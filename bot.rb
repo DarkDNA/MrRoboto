@@ -13,9 +13,11 @@ s.puts("JOIN #{channel}")
 
 # until we get to the EOF of the socket do stuff
 until s.eof? do
-    if s.gets == "PRIVMSG #{channel} :!beer"
+
+    if s.gets =~ /^:(.+?)!(.+?)@(.+?)\sPRIVMSG\s#lobby\s:!beer/
         s.puts("PRIVMSG #{channel} :Beer for you!")
     end
+
 
 end
 
