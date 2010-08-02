@@ -4,13 +4,16 @@ server = "wenduri.darkdna.net"
 port = 6667
 nick = "Plazma-bot"
 channel = "#lobby"
+users = ["Plazma", "Plazma-Rooolz"]
+
 currtime = Time.now
+currdate = currtime.strftime("%a %m/%d/%Y")
+currnow = currtime.strftime("%I:%M%p")
 
 s = TCPSocket.open(server,port)
 s.puts("NICK Plazma-bot")
 s.puts("USER Plazma-bot 8 * :Plaazma")
 s.puts("JOIN #{channel}")
-#s.puts("PRIVMSG #{channel} :MEOW!")
 
 # until we get to the EOF of the socket do stuff
 until s.eof? do
@@ -21,23 +24,38 @@ until s.eof? do
 
     case s.gets
 
-    	when /^:(.+?)!(.+?)@(.+?)\sPRIVMSG\s#lobby\s:!beer/
+	# uses the first captured group as a variable which really is the NICK of the user
+    	when /^:(.+?)!(.+?)@(.+?)\sPRIVMSG\s.+\s:!beer/
        	    s.puts("PRIVMSG #{channel} :Beer for #{$1}")
 
-    	when /^:(.+?)!(.+?)@(.+?)\sPRIVMSG\s#lobby\s:!time/
-       	    s.puts("PRIVMSG #{channel} :Current time: #{currtime}")
+    	when /^:(.+?)!(.+?)@(.+?)\sPRIVMSG\s.+\s:!time/
+       	    s.puts("PRIVMSG #{channel} :Current time: #{currnow}")
 
-    	when /^:(.+?)!(.+?)@(.+?)\sPRIVMSG\s#lobby\s:!quit/
-       	    s.puts("QUIT Franks and Beanz!")
-	
+    	when /^:(.+?)!(.+?)@(.+?)\sPRIVMSG\s.+\s:!date/
+       	    s.puts("PRIVMSG #{channel} :Current date: #{currdate} #{currnow}")
+
+    	when /^:(.+?)!(.+?)@(.+?)\sPRIVMSG\s.+\s:!quit/ 
+	    users.each { |x| 
+		puts("----------- DEBUG ------------")
+		puts("x passed to block: #{x}")
+		puts
+		puts("First captured group {$1}: #{$1}")
+		puts("x class: #{x.class}")
+		puts("first capture class: #{$1.class}")
+		puts("-----------END DEBUG --------")
+		#if the first captured part of the event (which is the nick) matches our listof users
+	   	if #{x} == #{$1} 
+	 	    s.puts("QUIT Franks and Beanz!")	
+		else
+		    s.puts("Sorry #{x} , you can't do that")
+		end
+            }
 	else
 	    puts s.gets
 	
     end
 
-    if s.eof?
-	s.puts("QUIT Cut down in my prime!")
-    end
-
 end
+
+    
 
