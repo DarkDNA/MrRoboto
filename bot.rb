@@ -26,7 +26,7 @@ until s.eof? do
 
 	# uses the first captured group as a variable which really is the NICK of the user
     	when /^:(.+?)!(.+?)@(.+?)\sPRIVMSG\s.+\s:!beer/
-       	    s.puts("PRIVMSG #{channel} :Gives #{$1} a beer")
+       	    s.puts("PRIVMSG #{channel} :\001ACTION Gives #{$1} a beer\001")
 
     	when /^:(.+?)!(.+?)@(.+?)\sPRIVMSG\s.+\s:!time/
        	    s.puts("PRIVMSG #{channel} :Current time: #{currnow}")
@@ -42,6 +42,7 @@ until s.eof? do
 		if x == $1
 	 	    s.puts("QUIT Beanz and Weenerz!")	
 		    puts "#{$1} told me to quit"
+		    exit
 		end
 
 		}
