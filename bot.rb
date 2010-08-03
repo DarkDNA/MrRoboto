@@ -3,8 +3,8 @@ require 'socket'
 server = "wenduri.darkdna.net"
 port = 6667
 nick = "Plazma-bot"
-channel = "#lobby"
-users = ["Plazma", "Plazma-Rooolz"]
+channel = "#test"
+users = ['Plazma', 'Plazma-Rooolz']
 
 currtime = Time.now
 currdate = currtime.strftime("%a %m/%d/%Y")
@@ -26,7 +26,7 @@ until s.eof? do
 
 	# uses the first captured group as a variable which really is the NICK of the user
     	when /^:(.+?)!(.+?)@(.+?)\sPRIVMSG\s.+\s:!beer/
-       	    s.puts("PRIVMSG #{channel} :Beer for #{$1}")
+       	    s.puts("PRIVMSG #{channel} :Gives #{$1} a beer")
 
     	when /^:(.+?)!(.+?)@(.+?)\sPRIVMSG\s.+\s:!time/
        	    s.puts("PRIVMSG #{channel} :Current time: #{currnow}")
@@ -34,22 +34,22 @@ until s.eof? do
     	when /^:(.+?)!(.+?)@(.+?)\sPRIVMSG\s.+\s:!date/
        	    s.puts("PRIVMSG #{channel} :Current date: #{currdate} #{currnow}")
 
-    	when /^:(.+?)!(.+?)@(.+?)\sPRIVMSG\s.+\s:!quit/ 
-	    users.each { |x| 
-		puts("----------- DEBUG ------------")
-		puts("x passed to block: #{x}")
-		puts
-		puts("First captured group {$1}: #{$1}")
-		puts("x class: #{x.class}")
-		puts("first capture class: #{$1.class}")
-		puts("-----------END DEBUG --------")
-		#if the first captured part of the event (which is the nick) matches our listof users
-	   	if #{x} == #{$1} 
-	 	    s.puts("QUIT Franks and Beanz!")	
-		else
-		    s.puts("Sorry #{x} , you can't do that")
+    	when /^:(.+)!(.+?)@(.+?)\sPRIVMSG\s.+\s:!quit/ 
+		
+		users.each { |x|
+		
+		# Test to see if the user is in the auth list, if it is we QUIt
+		if x == $1
+	 	    s.puts("QUIT Beanz and Weenerz!")	
+		    puts "#{$1} told me to quit"
 		end
-            }
+
+		}
+
+		#well we didn't quit so the user must not exist in the auth list, so lets deny them
+		s.puts("PRIVMSG #{channel} :Sorry #{$1} , you can't do that")
+	        puts "#{$1} wasn't authorized and tried to tell me to quit"
+		
 	else
 	    puts s.gets
 	
