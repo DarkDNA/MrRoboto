@@ -51,6 +51,10 @@ until s.eof? do
 		s.puts("PRIVMSG #{channel} :Sorry #{$1} , you can't do that")
 	        puts "#{$1} wasn't authorized and tried to tell me to quit"
 		
+	 when /^PING :(.+)$/
+		puts "[Server Ping]"
+		s.puts("PONG :#{$1}")
+		puts "PONG!"
 	else
 	    puts s.gets
 	
