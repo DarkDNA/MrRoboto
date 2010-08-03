@@ -1,0 +1,7 @@
+- Remove Regexs and make them use string operations "split()"
+
+- Make things into methods
+
+- make it all into a class
+
+
