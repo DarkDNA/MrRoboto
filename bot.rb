@@ -2,8 +2,8 @@ require 'socket'
 
 server = "wenduri.darkdna.net"
 port = 6667
-nick = "Plazma-bot"
-channel = "#test"
+nick = "TromBoner"
+channel = "#lobby"
 users = ['Plazma', 'Plazma-Rooolz']
 
 currtime = Time.now
@@ -11,8 +11,8 @@ currdate = currtime.strftime("%a %m/%d/%Y")
 currnow = currtime.strftime("%I:%M%p")
 
 s = TCPSocket.open(server,port)
-s.puts("NICK Plazma-bot")
-s.puts("USER Plazma-bot 8 * :Plaazma")
+s.puts("NICK #{nick}")
+s.puts("USER TromBoner 8 * :Plaazma")
 s.puts("JOIN #{channel}")
 
 # until we get to the EOF of the socket do stuff
