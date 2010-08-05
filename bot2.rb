@@ -25,13 +25,20 @@ def joinChannel(s,channel)
 
 end
 
-def botCommands(s,command)
+def botCommands(s,command,channel)
 
 	case command.strip
 
 		when "!beer"
 			puts s.class
-			s.puts("PRIVMSG #lobby :Beer for you, Beer for me!")
+			s.puts("PRIVMSG #{channel} :Beer for you, Beer for me!")
+		
+		when "!quit"
+			s.puts("QUIT FFFFFUUUU")
+
+		when "!date"
+			date = getDate
+			s.puts("PRIVMSG #{channel} :Current Date: #{date}" )
 	end
 
 
@@ -52,6 +59,11 @@ def handleEvents(s)
 
 	parsed = stream.split(":")
 
+	#split on whitespace
+	chansplit = stream.split
+
+	channel = chansplit[2]
+
 	#get the nick portion by splitting the first element in the parsed array by !
 	parsed2 = parsed[1].split("!")
 
@@ -61,20 +73,26 @@ def handleEvents(s)
 	#get the command by splitting the string at : and returning the last part
 	command = parsed.last
 
-	botCommands(stream,command)
+	case command.strip
 
-#	case command.strip
-#
-#		when "!beer"
-#			s.puts("PRIVMSG #lobby :\001ACTION Gives #{nick} a beer\001")
-#
-#		when "!date"
-#			date = getDate
-#			s.puts("PRIVMSG #lobby :Current Date: #{date}" )
-#
-#		when "!quit"
-#			s.puts("QUIT FFFFUUUUUU")
-#	end
+		when "!beer"
+			botCommands(s,command,channel)
+
+		when "!date"
+			date = getDate
+			botCommands(s,command,channel)
+
+		# We pass nil because when we quit we don't do channel stuff
+		when "!quit"
+			botCommands(s,command,nil)
+	end
+
+	case stream
+
+		when /^PING :(.+)$/
+			puts "#{$1}"
+	end
+
 
 end
 
