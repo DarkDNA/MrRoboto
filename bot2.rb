@@ -25,37 +25,55 @@ def joinChannel(s,channel)
 
 end
 
-def botCommands(stream, command)
+def botCommands(s,command)
 
+
+end
+
+def getDate
+
+	timeNow = Time.now
+	currdate = timeNow.strftime("%a %m/%d/%y")
+
+	return currdate
 end
 
 def handleEvents(s)
 
-stream = s.gets
+	stream = s.gets
 
-parsed = stream.split(" :")
-#get the command by splitting the string at : and returning the last part
+	parsed = stream.split(":")
 
-command = parsed.last
+	#get the nick portion by splitting the first element in the parsed array by !
+	parsed2 = parsed[1].split("!")
 
-puts
-puts("Command Parsed: #{command}")
-puts
+	#the nick is now stored as the first element in the parsed2 array
+	nick = parsed2[0]
+
+	#get the command by splitting the string at : and returning the last part
+	command = parsed.last
+
 	case command.strip
-	
-		when "!beer" 
-		   s.puts("PRIVMSG #test :Beer for all!") 
-	           puts("Detected Beer Command!")	
 
+		when "!beer"
+			s.puts("PRIVMSG #lobby :\001ACTION Gives #{nick} a beer\001")
+
+		when "!date"
+			date = getDate
+			s.puts("PRIVMSG #lobby :Current Date: #{date}" )
+
+		when "!quit"
+			s.puts("QUIT FFFFUUUUUU")
 	end
+
 end
 
 
 
 a = connectToServer("wenduri.darkdna.net", 6667, "boner")
 
-joinChannel(a,"#test")
-a.puts("PRIVMSG #test :Meow!")
+joinChannel(a,"#lobby")
+#a.puts("PRIVMSG #test :Meow!")
 
 
 until a.eof? do
