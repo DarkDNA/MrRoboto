@@ -11,11 +11,10 @@ def connectToServer(server, port, nick)
 end
 
 #disconnect using QUIT message to ircd , expects open stream
-def disconnect(s)
+def disconnect(s,message)
 	
-	puts("Quitting IRCD")
-
-	s.puts("QUIT FFFFUUUUU")    
+	s.puts("QUIT #{message}")    
+	s.close
 
 end
 
@@ -84,7 +83,8 @@ def handleEvents(s)
 
 		# We pass nil because when we quit we don't do channel stuff
 		when "!quit"
-			botCommands(s,command,nil)
+			message = "FFFFFUUUUU"
+			disconnect(s,message)
 	end
 
 	case stream
@@ -101,8 +101,6 @@ end
 a = connectToServer("wenduri.darkdna.net", 6667, "boner")
 
 joinChannel(a,"#lobby")
-#a.puts("PRIVMSG #test :Meow!")
-
 
 until a.eof? do
 
