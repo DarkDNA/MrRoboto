@@ -27,6 +27,14 @@ end
 
 def botCommands(s,command)
 
+	case command.strip
+
+		when "!beer"
+			puts s.class
+			s.puts("PRIVMSG #lobby :Beer for you, Beer for me!")
+	end
+
+
 
 end
 
@@ -53,18 +61,20 @@ def handleEvents(s)
 	#get the command by splitting the string at : and returning the last part
 	command = parsed.last
 
-	case command.strip
+	botCommands(stream,command)
 
-		when "!beer"
-			s.puts("PRIVMSG #lobby :\001ACTION Gives #{nick} a beer\001")
-
-		when "!date"
-			date = getDate
-			s.puts("PRIVMSG #lobby :Current Date: #{date}" )
-
-		when "!quit"
-			s.puts("QUIT FFFFUUUUUU")
-	end
+#	case command.strip
+#
+#		when "!beer"
+#			s.puts("PRIVMSG #lobby :\001ACTION Gives #{nick} a beer\001")
+#
+#		when "!date"
+#			date = getDate
+#			s.puts("PRIVMSG #lobby :Current Date: #{date}" )
+#
+#		when "!quit"
+#			s.puts("QUIT FFFFUUUUUU")
+#	end
 
 end
 
