@@ -24,16 +24,16 @@ def joinChannel(s,channel)
 
 end
 
-def botCommands(s,command,channel)
+def botCommands(s,command,channel,nick)
 
 	case command.strip
 
 		when "!beer"
-			puts s.class
-			s.puts("PRIVMSG #{channel} :Beer for you, Beer for me!")
+			s.puts("PRIVMSG #{channel} :\001ACTION gives #{nick} a beer\001")
 		
-		when "!quit"
-			s.puts("QUIT FFFFFUUUU")
+		when "!time"
+			time = getTime
+			s.puts("PRIVMSG #{channel} :Current Time: #{time}" )
 
 		when "!date"
 			date = getDate
@@ -50,6 +50,12 @@ def getDate
 	currdate = timeNow.strftime("%a %m/%d/%y")
 
 	return currdate
+end
+
+def getTime
+
+	timeNow = Time.now
+	currtime = timeNow.strftime("%I:%M%p")
 end
 
 def handleEvents(s)
@@ -75,11 +81,13 @@ def handleEvents(s)
 	case command.strip
 
 		when "!beer"
-			botCommands(s,command,channel)
+			botCommands(s,command,channel,nick)
 
 		when "!date"
-			date = getDate
-			botCommands(s,command,channel)
+			botCommands(s,command,channel,nil)
+
+		when "!time"
+			botCommands(s,command,channel,nil)
 
 		# We pass nil because when we quit we don't do channel stuff
 		when "!quit"
@@ -98,13 +106,16 @@ end
 
 
 
-a = connectToServer("wenduri.darkdna.net", 6667, "boner")
+a = connectToServer("wenduri.darkdna.net", 6667, "MrRoboto")
 
-joinChannel(a,"#lobby")
+joinChannel(a,"#test")
 
 until a.eof? do
 
+	#pass everything to the event handler
 	handleEvents(a)
+
+	#output everything to the console
 	puts a.gets
 
 end
