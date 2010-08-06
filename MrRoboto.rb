@@ -1,4 +1,5 @@
 require 'socket'
+require 'commands.rb'
 
 class MrRoboto
 	
@@ -56,15 +57,15 @@ class MrRoboto
 
 		channel = chansplit[2]
 
+		#create a new object for the bot commands
+		botCommands = BotCommands.new(s, nick, channel)
 
-		case command.strip
+		#the idea here is to send a message to the botCommands class to handle everything
+		# need to figure out how to get symbol to identify a method
+		#:command = command
 
-			when "!beer"
-				sleep(1)
-				s.puts("PRIVMSG #{channel} :\001ACTION gives #{nick} a beer\001")	
-			when "!quit"
-				disconnect(s)
-		end
+		#botCommands.send(:command)
+
 
 	end
 
@@ -84,8 +85,8 @@ class MrRoboto
 end
 
 
-#myBot = MrRoboto.new("wenduri.darkdna.net", 6667, "MrRoboto", "#lobby")
-myBot = MrRoboto.new("chat.freenode.net", 6667, "MrRoboooto", "##cisco-offtopic")
+myBot = MrRoboto.new("wenduri.darkdna.net", 6667, "MrRoboto", "#bots")
+#myBot = MrRoboto.new("chat.freenode.net", 6667, "MrRoboooto", "##cisco-offtopic")
 
 myBot.connect()
 
