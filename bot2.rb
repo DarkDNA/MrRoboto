@@ -95,18 +95,7 @@ def handleEvents(s)
 			disconnect(s)
 	end
 
-	case stream
-
 		#PING messages are in the format PING :SERVER
-		#when /^PING :(.+)$/
-		#	puts "#{$1}"
-
-		when parsed[0] == "PING"
-			puts "PING?"
-			s.puts("PONG :#{parsed[1]}")
-			puts "PONG!"
-
-	end
 
 
 end
