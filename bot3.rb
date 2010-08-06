@@ -52,11 +52,17 @@ class MrRoboto
 
 		command = split1.last
 
+		chansplit = eventStream.split
+
+		channel = chansplit[2]
+
 
 		case command.strip
 
 			when "!beer"
-				s.puts("PRIVMSG #lobby :\001ACTION gives #{nick} a beer\001")	
+				s.puts("PRIVMSG #{channel} :\001ACTION gives #{nick} a beer\001")	
+			when "!quit"
+				disconnect(s)
 		end
 
 	end
