@@ -62,10 +62,13 @@ class MrRoboto
 
 		#the idea here is to send a message to the botCommands class to handle everything
 		# need to figure out how to get symbol to identify a method
-		#:command = command
 
-		#botCommands.send(:command)
-
+		if botCommands.respond_to?(command)
+	
+			botCommands.send(:beer) 
+		else
+			#not valid command, do nothing
+		end
 
 	end
 

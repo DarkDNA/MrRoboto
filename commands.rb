@@ -8,8 +8,7 @@ class BotCommands
 
 	end
 
-
-	def !beer
+	def beer
 
 		@stream.puts("PRIVMSG #{channel} :\001ACTION gives #{@nick} a beer\001")
 
