@@ -11,10 +11,11 @@ def connectToServer(server, port, nick)
 end
 
 #disconnect using QUIT message to ircd , expects open stream
-def disconnect(s,message)
+def disconnect(s)
 	
+	message = "FFFFFUUUUU"
+	sleep(1)
 	s.puts("QUIT #{message}")    
-	s.close
 
 end
 
@@ -91,14 +92,20 @@ def handleEvents(s)
 
 		# We pass nil because when we quit we don't do channel stuff
 		when "!quit"
-			message = "FFFFFUUUUU"
-			disconnect(s,message)
+			disconnect(s)
 	end
 
 	case stream
 
-		when /^PING :(.+)$/
-			puts "#{$1}"
+		#PING messages are in the format PING :SERVER
+		#when /^PING :(.+)$/
+		#	puts "#{$1}"
+
+		when parsed[0] == "PING"
+			puts "PING?"
+			s.puts("PONG :#{parsed[1]}")
+			puts "PONG!"
+
 	end
 
 
@@ -106,9 +113,12 @@ end
 
 
 
-a = connectToServer("wenduri.darkdna.net", 6667, "MrRoboto")
+#a = connectToServer("chat.freenode.net", 6667, "MrRoboooto")
+a = connectToServer("wenduri.darkdna.net", 6667, "MrRoboooto")
+#a = connectToServer("irc.efnet.net", 6667, "MrRoboooto")
 
-joinChannel(a,"#test")
+#joinChannel(a,"#botters")
+joinChannel(a,"#lobby")
 
 until a.eof? do
 
