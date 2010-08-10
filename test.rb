@@ -1,8 +1,7 @@
 class BotCommands
 
-	def initialize(stream, channel, nick)
+	def initialize(channel, nick)
 
-		@stream = stream
 		@nick = nick
 		@channel = channel
 
@@ -16,3 +15,7 @@ class BotCommands
 	end
 
 end
+
+test = BotCommands.new("#beer", "nick")
+
+puts test.respond_to?("beer")

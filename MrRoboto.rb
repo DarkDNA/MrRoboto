@@ -63,9 +63,18 @@ class MrRoboto
 		#the idea here is to send a message to the botCommands class to handle everything
 		# need to figure out how to get symbol to identify a method
 
-		if botCommands.respond_to?(command)
+		command_sent = command.split("!").last
+
+
+		# for some reason it's saying it's not responding to the method but in my test.rb POC it seems to work. Tests below show that the command is a String object as well as being parsed correctly, but when it sees if it responds to it, it fails
+
+		puts "Command sent: #{command_sent}"
+		puts botCommands.respond_to?(command_sent)
+		if botCommands.respond_to?(command_sent)
 	
-			botCommands.send(:beer) 
+			puts "respondes to command: #{command_sent}"
+	
+			botCommands.send(command_sent) 
 		else
 			#not valid command, do nothing
 		end
