@@ -10,12 +10,15 @@ class BotCommands
 	def beer
 
 		puts "beer command message passed !"
-		@stream.puts("PRIVMSG #{channel} :\001ACTION gives #{@nick} a beer\001")
+#		@stream.puts("PRIVMSG #{channel} :\001ACTION gives #{@nick} a beer\001")
 
 	end
 
 end
 
+command = "beer"
 test = BotCommands.new("#beer", "nick")
 
-puts test.respond_to?("beer")
+puts test.respond_to?(command)
+
+test.send(command)
