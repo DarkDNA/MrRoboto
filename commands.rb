@@ -14,4 +14,42 @@ class BotCommands
 
 	end
 
+	def quit
+
+		users = ["Plazma", "Plazma-Rooolz"]
+
+		users.each { |x|
+
+		if x == @nick
+
+			@stream.puts("QUIT :FFFFFFUUUUUUUU")
+
+		end
+
+		}
+
+		#looks like we aren't a authorized user...
+
+		@stream.puts("PRIVMSG #{@channel} :Sorry #{@nick}, you are not authorized to do that")
+
+	end
+
+	def date
+		
+		timeNow = Time.now
+		currdate = timeNow.strftime("%a %m/%d/%y")
+
+		@stream.puts("PRIVMSG #{@channel} :Today's Date: #{currdate}")
+		
+	end
+
+	def time
+
+		timeNow = Time.now
+		currtime = timeNow.strftime("%I:%M%p")
+
+		@stream.puts("PRIVMSG #{@channel} :Current time: #{currtime}")
+
+	end
+
 end
