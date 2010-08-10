@@ -97,8 +97,9 @@ class MrRoboto
 end
 
 
-myBot = MrRoboto.new("wenduri.darkdna.net", 6667, "MrRoboto", "#lobby")
+#myBot = MrRoboto.new("wenduri.darkdna.net", 6667, "MrRoboto", "#lobby")
 #myBot = MrRoboto.new("chat.freenode.net", 6667, "MrRoboooto", "##cisco-offtopic")
+myBot = MrRoboto.new("chat.freenode.net", 6667, "MrRoboooto", "#botters")
 
 myBot.connect()
 

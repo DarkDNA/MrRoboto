@@ -1,3 +1,6 @@
+- ruby's send method with args works really easily
+	- example: class.send method arg1 arg2
+
 - Figugre out why it doesn't always respond to commands (ruby sockets slow?)
 
 - Allow commands to take arguments such as !beer <NICK>
