@@ -1,7 +1,14 @@
-- Remove Regexs and make them use string operations "split()"
+- Figugre out why it doesn't always respond to commands (ruby sockets slow?)
 
-- Make things into methods
+- Fix the command parsing / clean up
 
-- make it all into a class
+- clean up event handler 
+
+- implment solution to PING/PONG
+
+- perhaps re-write/parse message stuff.. break it down to PRIVMSG, NOTICE, etc
+
+- figure out how to get with services and identify to nickserv and then fix auth system accordingly
+
 
 
