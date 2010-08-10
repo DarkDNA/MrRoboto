@@ -10,7 +10,6 @@ class BotCommands
 
 	def beer
 
-	#	puts "beer command message passed !"
 		@stream.puts("PRIVMSG #{@channel} :\001ACTION gives #{@nick} a beer\001")
 
 	end

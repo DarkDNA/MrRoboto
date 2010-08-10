@@ -58,7 +58,7 @@ class MrRoboto
 		channel = chansplit[2]
 
 		#create a new object for the bot commands
-		botCommands = BotCommands.new(s, nick, channel)
+		botCommands = BotCommands.new(s, channel, nick)
 
 		#the idea here is to send a message to the botCommands class to handle everything
 
