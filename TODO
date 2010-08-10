@@ -1,5 +1,7 @@
 - Figugre out why it doesn't always respond to commands (ruby sockets slow?)
 
+- Allow commands to take arguments such as !beer <NICK>
+
 - Fix the command parsing / clean up
 
 - clean up event handler 
