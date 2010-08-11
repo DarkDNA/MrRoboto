@@ -57,27 +57,30 @@ class MrRoboto
 
 		channel = chansplit[2]
 
-		#create a new object for the bot commands
+		#create a new object for the bot commands and makes it dynamic
 		botCommands = BotCommands.new(s, channel, nick)
 
 		#the idea here is to send a message to the botCommands class to handle everything
 
 		command_sent = command.split("!").last.strip
 
-		# for some reason it's saying it's not responding to the method but in my test.rb POC it seems to work. Tests below show that the command is a String object as well as being parsed correctly, but when it sees if it responds to it, it fails
 
-#		puts "Command sent: #{command_sent}"
-#		puts "Command sent Class: #{command_sent.class}"
-#		puts botCommands.respond_to?(command_sent)
+	if command.include?("!")
+
+		# command is valid at this point, so parse out the !
+		command_sent = command.split("!").last.strip
+			
+		# see if our class responds/has the appropriate command	
 
 		if botCommands.respond_to?(command_sent)
 	
-#			puts "respondes to command: #{command_sent}"
-	
+			#send parsed command to commands class
 			botCommands.send(command_sent) 
 		else
 			#not valid command, do nothing
 		end
+
+	 end
 
 	end
 
@@ -97,9 +100,9 @@ class MrRoboto
 end
 
 
-#myBot = MrRoboto.new("wenduri.darkdna.net", 6667, "MrRoboto", "#lobby")
+myBot = MrRoboto.new("wenduri.darkdna.net", 6667, "MrRoboto", "#bots")
 #myBot = MrRoboto.new("chat.freenode.net", 6667, "MrRoboooto", "##cisco-offtopic")
-myBot = MrRoboto.new("chat.freenode.net", 6667, "MrRoboooto", "#botters")
+#myBot = MrRoboto.new("chat.freenode.net", 6667, "MrRoboooto", "#botters")
 
 myBot.connect()
 
