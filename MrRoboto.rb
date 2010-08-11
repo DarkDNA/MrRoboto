@@ -64,7 +64,16 @@ class MrRoboto
 
 		command_sent = command.split("!").last.strip
 
+		ping_split = eventStream.split
 
+	if ping_split[0].strip == "PING"
+
+		botCommands.send("PING #{ping_split[1].strip}")
+
+	end	
+
+
+	# check to see if the command has a !, fixes the bug where both beer and !beer would work
 	if command.include?("!")
 
 		# command is valid at this point, so parse out the !
@@ -100,9 +109,9 @@ class MrRoboto
 end
 
 
-myBot = MrRoboto.new("wenduri.darkdna.net", 6667, "MrRoboto", "#bots")
+#myBot = MrRoboto.new("wenduri.darkdna.net", 6667, "MrRoboto", "#bots")
 #myBot = MrRoboto.new("chat.freenode.net", 6667, "MrRoboooto", "##cisco-offtopic")
-#myBot = MrRoboto.new("chat.freenode.net", 6667, "MrRoboooto", "#botters")
+myBot = MrRoboto.new("chat.freenode.net", 6667, "MrRoboooto", "#botters")
 
 myBot.connect()
 

@@ -1,3 +1,5 @@
+- Seems to parse incorrectly and if i were to have "do not give me a !beer" it runs the command
+
 - ruby's send method with args works really easily
 	- example: class.send method arg1 arg2
 

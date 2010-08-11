@@ -52,4 +52,11 @@ class BotCommands
 
 	end
 
+	def PING(server)
+
+		puts("PONG #{server}")
+		@stream.puts("PONG #{server}")
+
+	end
+
 end
