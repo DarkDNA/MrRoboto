@@ -3,6 +3,9 @@
 
 
 - Seems to parse incorrectly and if i were to have "do not give me a !beer" it runs the command
+	- This ONLY happens when command is the last word in the sentence.. need to parse it correctly to ensure that the command is the ONLY word after :
+
+		- example: :!beer vs :!beer me
 	
 
 - ruby's send method with args works really easily
