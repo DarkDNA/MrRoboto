@@ -39,11 +39,14 @@ class MrRoboto
 
 		#Put output to screen
 	
-		puts s.gets
+	#	puts s.gets
 		
-		#parse everything into raw commands
-
 		eventStream = s.gets
+
+		puts eventStream
+
+
+		#parse everything into raw commands
 
 		split1 = eventStream.split(":")
 		
