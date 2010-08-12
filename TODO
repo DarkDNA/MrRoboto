@@ -1,3 +1,7 @@
+
+- on freenode, to work with nickserv to see if a user is identified you need to : You would send CAP REQ IDENTIFY-MSG   .. this prepends a + to the nick if identified
+
+
 - Seems to parse incorrectly and if i were to have "do not give me a !beer" it runs the command
 
 - ruby's send method with args works really easily
