@@ -3,11 +3,13 @@
 
 
 - Seems to parse incorrectly and if i were to have "do not give me a !beer" it runs the command
+	
 
 - ruby's send method with args works really easily
 	- example: class.send method arg1 arg2
 
 - Figugre out why it doesn't always respond to commands (ruby sockets slow?)
+	- Turns out i need to split on the input stream before i split due to \r\n's this could cause a lot of issues/headaches
 
 - Allow commands to take arguments such as !beer <NICK>
 
@@ -15,13 +17,6 @@
 	- can do this with a logical conition (if command HAS ! , then parse it out and send to bot class
 
 - clean up event handler 
-
-*** - implment solution to PING/PONG
-	- PING :jettanos.darkdna.net
-	- PONG :jettanos.darkdna.net 
-
-	- split at :, put in logic above, else if message = PING , 
-		- send message to PONG with server as arg
 
 - perhaps re-write/parse message stuff.. break it down to PRIVMSG, NOTICE, etc
 

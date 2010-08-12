@@ -66,9 +66,13 @@ class MrRoboto
 
 		ping_split = eventStream.split
 
+	#	puts("Ping command = #{ping_split[0].strip}")
+	#	puts("Server pinged: #{ping_split[1].strip}")
+
 	if ping_split[0].strip == "PING"
 
-		botCommands.send("PING #{ping_split[1].strip}")
+		puts("PING #{ping_split[1].strip}")
+		botCommands.send(:ping, ping_split[1].strip)
 
 	end	
 
@@ -111,7 +115,7 @@ end
 
 #myBot = MrRoboto.new("wenduri.darkdna.net", 6667, "MrRoboto", "#bots")
 #myBot = MrRoboto.new("chat.freenode.net", 6667, "MrRoboooto", "##cisco-offtopic")
-myBot = MrRoboto.new("chat.freenode.net", 6667, "MrRoboooto", "#botters")
+myBot = MrRoboto.new("chat.freenode.net", 6667, "MrRoboooto", "##plazma")
 
 myBot.connect()
 
