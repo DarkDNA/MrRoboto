@@ -74,7 +74,6 @@ class MrRoboto
 
 	if ping_split[0].strip == "PING"
 
-		puts("PING #{ping_split[1].strip}")
 		botCommands.send(:ping, ping_split[1].strip)
 
 	end	

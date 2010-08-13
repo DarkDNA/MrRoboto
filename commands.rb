@@ -59,4 +59,10 @@ class BotCommands
 
 	end
 
+	def help
+
+		@stream.puts("Current commands: !beer , !date , !time, !help")
+
+	end
+
 end
