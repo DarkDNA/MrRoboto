@@ -8,22 +8,22 @@
 		- example: :!beer vs :!beer me
 	
 
-- ruby's send method with args works really easily
-	- example: class.send method arg1 arg2
-
-- Figugre out why it doesn't always respond to commands (ruby sockets slow?)
-	- Turns out i need to split on the input stream before i split due to \r\n's this could cause a lot of issues/headaches
-
 - Allow commands to take arguments such as !beer <NICK>
-
-*** - Fix the command parsing / clean up
-	- can do this with a logical conition (if command HAS ! , then parse it out and send to bot class
 
 - clean up event handler 
 
 - perhaps re-write/parse message stuff.. break it down to PRIVMSG, NOTICE, etc
 
 - figure out how to get with services and identify to nickserv and then fix auth system accordingly
+	- do this on freenode with CAP identify-msg above OR you could /whois someone and parse
+
+
+- Following Error happens when use !quit (doesn't seem to be a big deal but would be nice to fix) :
+
+MrRoboto.rb:51:in `eventHandler': undefined method `split' for nil:NilClass (NoMethodError)
+        from MrRoboto.rb:108:in `run'
+        from MrRoboto.rb:126:in `<main>'
+
 
 
 
