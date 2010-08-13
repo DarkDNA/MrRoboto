@@ -61,7 +61,7 @@ class BotCommands
 
 	def help
 
-		@stream.puts("Current commands: !beer , !date , !time, !help")
+		@stream.puts("PRIVMSG #{@channel} :Current commands: !beer , !date , !time, !help")
 
 	end
 
