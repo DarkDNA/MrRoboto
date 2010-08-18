@@ -47,13 +47,11 @@ class MrRoboto
 		#parse everything into raw commands
 
 		split1 = eventStream.split(":")
-		
-	if split1.class != NilClass
 
 		nicksplit = split1[1].split("!")
 
 		nick = nicksplit[0]
-	end
+
 		#here we get the message sent to channel
 		message = split1.last
 
@@ -68,15 +66,12 @@ class MrRoboto
 		botCommands = BotCommands.new(s, channel, nick)
 
 		#the idea here is to send a message to the botCommands class to handle everything
-
 		ping_split = eventStream.split
 
 	if ping_split[0].strip == "PING"
 
 		botCommands.send(:ping, ping_split[1].strip)
-
-	end	
-
+ 	end
 
 
 # Sometimes the ircd's send us things that somehow end up being NIL instead of being a string so we have to handle them accoridngly 
@@ -113,15 +108,4 @@ class MrRoboto
 	end
 
 
-
 end
-
-
-#### TEST SECTION ####
-#myBot = MrRoboto.new("wenduri.darkdna.net", 6667, "MrRoboto", "#lobby")
-#myBot = MrRoboto.new("chat.freenode.net", 6667, "MrRoboooto", "#botters")
-#myBot = MrRoboto.new("localhost", 6667, "MrRoboto", "#lobby")
-
-#myBot.connect()
-
-#myBot.run()
