@@ -39,8 +39,6 @@ class MrRoboto
 
 		#Put output to screen
 	
-	#	puts s.gets
-		
 		eventStream = s.gets
 
 		puts eventStream
@@ -54,7 +52,11 @@ class MrRoboto
 
 		nick = nicksplit[0]
 
-		command = split1.last
+		#here we get the message sent to channel
+		message = split1.last
+
+		#here we parse out the raw command, probably will fix to add options for args
+		command = message.split.first
 
 		chansplit = eventStream.split
 
@@ -65,12 +67,7 @@ class MrRoboto
 
 		#the idea here is to send a message to the botCommands class to handle everything
 
-		command_sent = command.split("!").last.strip
-
 		ping_split = eventStream.split
-
-	#	puts("Ping command = #{ping_split[0].strip}")
-	#	puts("Server pinged: #{ping_split[1].strip}")
 
 	if ping_split[0].strip == "PING"
 
@@ -79,8 +76,13 @@ class MrRoboto
 	end	
 
 
+
+# Sometimes the ircd's send us things that somehow end up being NIL instead of being a string so we have to handle them accoridngly 
+
+if command.class != NilClass
+
 	# check to see if the command has a !, fixes the bug where both beer and !beer would work
-	if command.include?("!")
+	if command.include?("!") 
 
 		# command is valid at this point, so parse out the !
 		command_sent = command.split("!").last.strip
@@ -99,7 +101,7 @@ class MrRoboto
 
 	end
 
-
+end
 	def run()
 
 		while true
@@ -115,10 +117,10 @@ class MrRoboto
 end
 
 
-#myBot = MrRoboto.new("wenduri.darkdna.net", 6667, "MrRoboto", "#bots")
-#myBot = MrRoboto.new("chat.freenode.net", 6667, "MrRoboooto", "##cisco-offtopic")
-#myBot = MrRoboto.new("chat.freenode.net", 6667, "MrRoboooto", "##plazma")
+#### TEST SECTION ####
+#myBot = MrRoboto.new("wenduri.darkdna.net", 6667, "MrRoboto", "#lobby")
 myBot = MrRoboto.new("chat.freenode.net", 6667, "MrRoboooto", "#botters")
+#myBot = MrRoboto.new("localhost", 6667, "MrRoboto", "#lobby")
 
 myBot.connect()
 
