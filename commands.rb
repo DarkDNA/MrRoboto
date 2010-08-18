@@ -65,4 +65,10 @@ class BotCommands
 
 	end
 
+	def say(message)
+	
+		@stream.puts("PRIVMSG #{@channel} :#{message}")
+
+	end
+
 end

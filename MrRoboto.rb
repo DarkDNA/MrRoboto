@@ -48,6 +48,13 @@ class MrRoboto
 
 		split1 = eventStream.split(":")
 
+
+#		parsedmsg1 = split1[2]
+#
+#		parsedmsg2 = parsedmsg1.split(parsedmsg1.split.first)
+
+#		saymsg = parsedmsg2[2]
+
 		nicksplit = split1[1].split("!")
 
 		nick = nicksplit[0]
@@ -73,7 +80,6 @@ class MrRoboto
 		botCommands.send(:ping, ping_split[1].strip)
  	end
 
-
 # Sometimes the ircd's send us things that somehow end up being NIL instead of being a string so we have to handle them accoridngly 
 
 if command.class != NilClass
@@ -87,9 +93,9 @@ if command.class != NilClass
 		# see if our class responds/has the appropriate command	
 
 		if botCommands.respond_to?(command_sent)
-	
+
 			#send parsed command to commands class
-			botCommands.send(command_sent) 
+			botCommands.send(command_sent, saymsg) 
 		else
 			#not valid command, do nothing
 		end
