@@ -48,10 +48,12 @@ class MrRoboto
 
 		split1 = eventStream.split(":")
 		
+	if split1.class != NilClass
+
 		nicksplit = split1[1].split("!")
 
 		nick = nicksplit[0]
-
+	end
 		#here we get the message sent to channel
 		message = split1.last
 

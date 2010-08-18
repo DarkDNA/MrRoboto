@@ -1,14 +1,13 @@
-
-- on freenode, to work with nickserv to see if a user is identified you need to : You would send CAP REQ IDENTIFY-MSG   .. this prepends a + to the nick if identified
-
-
-***** - Seems to parse incorrectly and if i were to have "do not give me a !beer" it runs the command
-	- This ONLY happens when command is the last word in the sentence.. need to parse it correctly to ensure that the command is the ONLY word after :
-
-		- example: :!beer vs :!beer me
-	
-
 - Allow commands to take arguments such as !beer <NICK>
+	- parsing is now fixed and makes sure the command is first, so now we need to have everything after split correctly:
+	- for !beer just 1 arg so it would take the next elemnt ONLY
+		- if arg = nick then gives beer to nick
+		- if arg = me , gives beer to self
+		- if no arg , give beer to self
+
+	
+- add a say command that takes several arguments
+	- !say args
 
 - clean up event handler 
 
@@ -16,6 +15,9 @@
 
 - figure out how to get with services and identify to nickserv and then fix auth system accordingly
 	- do this on freenode with CAP identify-msg above OR you could /whois someone and parse
+
+- on freenode, to work with nickserv to see if a user is identified you need to : You would send CAP REQ IDENTIFY-MSG   .. this prepends a + to the nick if identified
+
 
 
 - Following Error happens when use !quit (doesn't seem to be a big deal but would be nice to fix) :
