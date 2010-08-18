@@ -81,7 +81,6 @@ class MrRoboto
 
 # Sometimes the ircd's send us things that somehow end up being NIL instead of being a string so we have to handle them accoridngly 
 
-if command.class != NilClass
 
 	# check to see if the command has a !, fixes the bug where both beer and !beer would work
 	if command.include?("!") 
@@ -103,7 +102,6 @@ if command.class != NilClass
 
 	end
 
-end
 	def run()
 
 		while true
