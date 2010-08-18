@@ -119,9 +119,9 @@ end
 
 #### TEST SECTION ####
 #myBot = MrRoboto.new("wenduri.darkdna.net", 6667, "MrRoboto", "#lobby")
-myBot = MrRoboto.new("chat.freenode.net", 6667, "MrRoboooto", "#botters")
+#myBot = MrRoboto.new("chat.freenode.net", 6667, "MrRoboooto", "#botters")
 #myBot = MrRoboto.new("localhost", 6667, "MrRoboto", "#lobby")
 
-myBot.connect()
+#myBot.connect()
 
-myBot.run()
+#myBot.run()
