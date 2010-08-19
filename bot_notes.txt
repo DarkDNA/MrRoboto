@@ -1,0 +1,40 @@
+:host PRIVMSG #channel :msg
+
+:Dbgongo!schongo@static-98-140-87-41.dsl.cavtel.net QUIT :Quit: Dbgongo
+
+:Plazma-Rooolz!plazma@ip24-56-18-90.ph.ph.cox.net PRIVMSG #lobby :!beer
+
+:Plazma-Rooolz!plazma@ip24-56-18-90.ph.ph.cox.net PRIVMSG #lobby :Give me a !beer
+
+:Plazma-Rooolz!plazma@ip24-56-18-90.ph.ph.cox.net PRIVMSG <NICK> :!beer
+
+- needs to handle notice , privmsg (to user)
+
+QUIT\s:MESSAGE
+
+PING :jettanos.darkdna.net
+
+split string by : which returns and array
+convert array to string
+split string by ! whichi returns array
+
+
+<+noms|ill> remind me never to play with toilet roll tubes and my erect penis ever again.
+
+17:45 < nanotube> Plazma-Rooolz: that should happen in your message parser, before your command
+                  dispatcher is involved.
+17:46 < nanotube> Plazma-Rooolz: you parse the msg, if it starts with !, you say aha, it is a command
+                  to my bot! strip out the !, and dispatch it along.
+    
+QUIT message only works after 5 minutes of connect time
+
+
+
+message = 
+
+command = message.split.last
+
+
+MrRoboto.rb:82:in `eventHandler': undefined method `include?' for nil:NilClass (NoMethodError)
+        from MrRoboto.rb:106:in `run'
+        from MrRoboto.rb:124:in `<main>'
