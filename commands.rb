@@ -14,7 +14,7 @@ class BotCommands
 
 	end
 
-	def quit
+	def quit(*args)
 
 		users = ["Plazma", "Plazma-Rooolz"]
 

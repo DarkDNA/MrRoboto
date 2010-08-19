@@ -49,9 +49,11 @@ class MrRoboto
 		split1 = eventStream.split(":")
 
 
-#		parsedmsg1 = split1[2]
-#
-#		parsedmsg2 = parsedmsg1.split(parsedmsg1.split.first)
+		#parsedmsg1 = split1[2]
+
+		saymsg = split1[2]
+
+		#parsedmsg2 = parsedmsg1.split(parsedmsg1.split.first)
 
 #		saymsg = parsedmsg2[2]
 

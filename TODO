@@ -1,3 +1,5 @@
+**** - planning / fixing new parsing scheme, it's getting worse and more difficult to grasp as i go on
+
 - Allow commands to take arguments such as !beer <NICK>
 	- parsing is now fixed and makes sure the command is first, so now we need to have everything after split correctly:
 	- for !beer just 1 arg so it would take the next elemnt ONLY
@@ -5,6 +7,7 @@
 		- if arg = me , gives beer to self
 		- if no arg , give beer to self
 
+- Nasty bug, when entering just ! it crashes the bot, most likely due to crappy parsing
 	
 - add a say command that takes several arguments
 	- !say args
