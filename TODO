@@ -1,4 +1,22 @@
-**** - planning / fixing new parsing scheme, it's getting worse and more difficult to grasp as i go on
+=== BUGS and other nasty stuff ===
+
+- new parsing scheme makes things way easier to understand and seems faster, but has some drawbacks
+
+	- need to parse better so when i use the say command it removes !say from it
+		- perhaps a check if command = "!say" then split it from !
+
+	- still seems to be a big issue that some things received in the event are determined as
+	a NilClass so when i try to pass split to it , it crashes
+
+MrRoboto.rb:51:in `eventHandler': undefined method `split' for nil:NilClass (NoMethodError)
+        from MrRoboto.rb:108:in `run'
+        from MrRoboto.rb:126:in `<main>'
+
+- Nasty bug, when entering just ! it crashes the bot, most likely due to crappy parsing
+
+
+
+==== FEATURES TO ADD
 
 - Allow commands to take arguments such as !beer <NICK>
 	- parsing is now fixed and makes sure the command is first, so now we need to have everything after split correctly:
@@ -6,29 +24,18 @@
 		- if arg = nick then gives beer to nick
 		- if arg = me , gives beer to self
 		- if no arg , give beer to self
+	
+		- can do this with optional args or method(*args)
+			- need to figure out if *args is really an array?
 
-- Nasty bug, when entering just ! it crashes the bot, most likely due to crappy parsing
 	
 - add a say command that takes several arguments
 	- !say args
+	- need to fix splitting
 
-- clean up event handler 
-
-- perhaps re-write/parse message stuff.. break it down to PRIVMSG, NOTICE, etc
 
 - figure out how to get with services and identify to nickserv and then fix auth system accordingly
 	- do this on freenode with CAP identify-msg above OR you could /whois someone and parse
 
 - on freenode, to work with nickserv to see if a user is identified you need to : You would send CAP REQ IDENTIFY-MSG   .. this prepends a + to the nick if identified
-
-
-
-- Following Error happens when use !quit (doesn't seem to be a big deal but would be nice to fix) :
-
-MrRoboto.rb:51:in `eventHandler': undefined method `split' for nil:NilClass (NoMethodError)
-        from MrRoboto.rb:108:in `run'
-        from MrRoboto.rb:126:in `<main>'
-
-
-
 
