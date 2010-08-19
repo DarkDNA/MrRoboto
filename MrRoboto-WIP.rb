@@ -35,6 +35,65 @@ class MrRoboto
  
 	end
 
+  # After several revision i decided it would be much easier to have a method parse everything and then set instance
+  # variables accordingly
+
+  def parseStream(inputStream)
+
+    # First we take the input stream from the event handler and split it by : to remove the colons at the beginning
+    # and end of a raw irc string
+
+    parsedColon = inputStream.split(":")
+
+    # Here as it turns out the last part of our parsed string is the acutal message inputted by the users. So we store
+    # This in an instance variable for the whole object to use
+    @parsedMsg = parsedColon.last
+
+    # Now we need to extract the first element which will be our bot command. Then we take anything after the command as
+    # bot command argument, so we split it based on the command itself (in this case the first word in the @parsedMsg
+    cmdParse = @parsedMsg.split
+
+    @botCmd = cmdParse[0]
+    botCmdArgsSplit = @parsedMsg.split(@parsedMsg.split.first)
+    @botCmdArgs = botCmdArgsSplit[2]
+
+    # This might be a bit odd, but we need to strip the ! out of it so we then later send a message to the commands class
+    @botCmdToSend = @botCmd.split("!").last.strip
+
+    # The 2nd element in our parsing contians one long string of a nick!host Message Type Nick or Channel so we store it
+    # for parsing
+    nickHostMsgChan = parsedColon[1]
+
+    # Now that we have nickHostMsgChan in one string, we parse it by the space as this is the seperator for the majority of it
+    parsedSpace = nickHostMsgChan.split 
+
+    # This only happens every so often, but we need to see if the first element is a PING message and if it is we set a flag
+    # Denoting it's a ping message and then store the :server portion for later PONG usage
+
+    if parsedSpace[0].strip == "PING"
+        @isPing = true
+        @pongServ = parsedSpace[1]
+    else
+        #We can store the message type here (if it's PRIVMSG , NOTICE,  ..etc)
+	@isPing = false
+        @msgType = parsedSpace[1]
+    end
+
+    # This is neat because we can determine later if it's a channel (by the presence of a #) or if it's a nickname
+    @nickOrChan = parsedSpace[2]
+
+    # What's left now is the nick!host portion that we store for further parsing
+    hostNick = parsedSpace[0]
+
+    # To get the nick by itself, we need to parse at the exclamation point in the raw irc message
+    parsedEpt = hostNick.split("!")
+
+    # We now store the nick as a instance variable for the whole object to use
+    @streamNick = parsedEpt[0]
+
+  end
+
+
 	def eventHandler(s)
 
 		#Put output to screen
@@ -43,68 +102,41 @@ class MrRoboto
 
 		puts eventStream
 
+    # Here we call the parser above and prase out each line to see what it is, and we can then peform logic on the instance
+    # variables it sets later
+    parseStream(eventStream)
 
-		#parse everything into raw commands
+    # Is the ping flag set? that means we have a ping message, so let's reply accordingly
+    if @isPing == true
 
-		split1 = eventStream.split(":")
+        botCommands.send(:ping, @pongServ.strip)
 
-
-		#parsedmsg1 = split1[2]
-
-		saymsg = split1[2]
-
-		#parsedmsg2 = parsedmsg1.split(parsedmsg1.split.first)
-
-#		saymsg = parsedmsg2[2]
-
-		nicksplit = split1[1].split("!")
-
-		nick = nicksplit[0]
-
-		#here we get the message sent to channel
-		message = split1.last
-
-		#here we parse out the raw command, probably will fix to add options for args
-		command = message.split.first
-
-		chansplit = eventStream.split
-
-		channel = chansplit[2]
+	  end
 
 		#create a new object for the bot commands and makes it dynamic
-		botCommands = BotCommands.new(s, channel, nick)
+		botCommands = BotCommands.new(s, @nickOrChan, @streamNick)
 
-		#the idea here is to send a message to the botCommands class to handle everything
-		ping_split = eventStream.split
+    # This has a nasty bug when ! is the only char in the stream it dies
+    if @botCmd.include?("!")
+        
+        # Test to see if our object responds to the parsed method name, if so send it!
+        if botCommands.respond_to?(@botCmdToSend)
+        
+            botCommands.send(@botCmdToSend)
 
-	if ping_split[0].strip == "PING"
+        else
 
-		botCommands.send(:ping, ping_split[1].strip)
- 	end
+            # must not respond to anything, so we just ignore it
+        end
 
-# Sometimes the ircd's send us things that somehow end up being NIL instead of being a string so we have to handle them accoridngly 
 
-if command.class != NilClass
+    end
 
-	# check to see if the command has a !, fixes the bug where both beer and !beer would work
-	if command.include?("!") 
 
-		# command is valid at this point, so parse out the !
-		command_sent = command.split("!").last.strip
-			
-		# see if our class responds/has the appropriate command	
 
-		if botCommands.respond_to?(command_sent)
+  end
 
-			#send parsed command to commands class
-			botCommands.send(command_sent, saymsg) 
-		else
-			#not valid command, do nothing
-		end
 
-	 end
-end
-	end
 
 	def run()
 
@@ -118,3 +150,5 @@ end
 
 
 end
+
+
