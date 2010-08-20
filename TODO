@@ -15,6 +15,8 @@ MrRoboto.rb:51:in `eventHandler': undefined method `split' for nil:NilClass (NoM
 
 ==== FEATURES TO ADD
 
+- Fix things to maybe use an array or return an array of parsed messages instead of having a that many instance variables.
+
 - Allow commands to take arguments such as !beer <NICK>
 	- parsing is now fixed and makes sure the command is first, so now we need to have everything after split correctly:
 	- for !beer just 1 arg so it would take the next elemnt ONLY
