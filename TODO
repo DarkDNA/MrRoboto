@@ -3,6 +3,8 @@
 	- still seems to be a big issue that some things received in the event are determined as
 	a NilClass so when i try to pass split to it , it crashes
 
+	- The issue is whwen reading from a raw socket some things come across as strings while others come across as NilClass (perhaps odd characters such as [ ] ! # ) ?
+
 MrRoboto.rb:51:in `eventHandler': undefined method `split' for nil:NilClass (NoMethodError)
         from MrRoboto.rb:108:in `run'
         from MrRoboto.rb:126:in `<main>'

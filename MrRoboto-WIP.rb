@@ -125,7 +125,7 @@ class MrRoboto
         
             botCommands.send(@botCmdToSend, @botCmdArgs)
 
-	    puts("BOT COMMAND ARGS: #{@botCmdArgs}")
+	    #puts("BOT COMMAND ARGS: #{@botCmdArgs}")
 
         else
 
