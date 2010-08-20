@@ -2,9 +2,6 @@
 
 - new parsing scheme makes things way easier to understand and seems faster, but has some drawbacks
 
-	- need to parse better so when i use the say command it removes !say from it
-		- perhaps a check if command = "!say" then split it from !
-
 	- still seems to be a big issue that some things received in the event are determined as
 	a NilClass so when i try to pass split to it , it crashes
 
@@ -27,11 +24,6 @@ MrRoboto.rb:51:in `eventHandler': undefined method `split' for nil:NilClass (NoM
 	
 		- can do this with optional args or method(*args)
 			- need to figure out if *args is really an array?
-
-	
-- add a say command that takes several arguments
-	- !say args
-	- need to fix splitting
 
 
 - figure out how to get with services and identify to nickserv and then fix auth system accordingly

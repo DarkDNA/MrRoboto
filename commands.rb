@@ -8,7 +8,7 @@ class BotCommands
 
 	end
 
-	def beer
+	def beer(*args)
 
 		@stream.puts("PRIVMSG #{@channel} :\001ACTION gives #{@nick} a beer\001")
 
@@ -34,7 +34,7 @@ class BotCommands
 
 	end
 
-	def date
+	def date(*args)
 		
 		timeNow = Time.now
 		currdate = timeNow.strftime("%a %m/%d/%y")
@@ -43,7 +43,7 @@ class BotCommands
 		
 	end
 
-	def time
+	def time(*args)
 
 		timeNow = Time.now
 		currtime = timeNow.strftime("%I:%M%p")
@@ -59,9 +59,9 @@ class BotCommands
 
 	end
 
-	def help
+	def help(*args)
 
-		@stream.puts("PRIVMSG #{@channel} :Current commands: !beer , !date , !time, !help")
+		@stream.puts("PRIVMSG #{@channel} :Current commands: !beer , !date , !time, !help, !say")
 
 	end
 

@@ -55,7 +55,8 @@ class MrRoboto
 
     @botCmd = cmdParse[0]
     botCmdArgsSplit = @parsedMsg.split(@parsedMsg.split.first)
-    @botCmdArgs = botCmdArgsSplit[2]
+    @botCmdArgs = botCmdArgsSplit[1].strip
+
 
     # This might be a bit odd, but we need to strip the ! out of it so we then later send a message to the commands class
     @botCmdToSend = @botCmd.split("!").last.strip
@@ -122,7 +123,9 @@ class MrRoboto
         # Test to see if our object responds to the parsed method name, if so send it!
         if botCommands.respond_to?(@botCmdToSend)
         
-            botCommands.send(@botCmdToSend)
+            botCommands.send(@botCmdToSend, @botCmdArgs)
+
+	    puts("BOT COMMAND ARGS: #{@botCmdArgs}")
 
         else
 
