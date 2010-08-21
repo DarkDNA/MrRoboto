@@ -48,15 +48,6 @@ class MrRoboto
 
 		split1 = eventStream.split(":")
 
-
-		#parsedmsg1 = split1[2]
-
-		saymsg = split1[2]
-
-		#parsedmsg2 = parsedmsg1.split(parsedmsg1.split.first)
-
-#		saymsg = parsedmsg2[2]
-
 		nicksplit = split1[1].split("!")
 
 		nick = nicksplit[0]
@@ -97,7 +88,7 @@ if command.class != NilClass
 		if botCommands.respond_to?(command_sent)
 
 			#send parsed command to commands class
-			botCommands.send(command_sent, saymsg) 
+			botCommands.send(command_sent) 
 		else
 			#not valid command, do nothing
 		end

@@ -47,7 +47,8 @@ class MrRoboto
 
     # Here as it turns out the last part of our parsed string is the acutal message inputted by the users. So we store
     # This in an instance variable for the whole object to use
-    @parsedMsg = parsedColon.last
+    #@parsedMsg = parsedColon.last
+    @parsedMsg = parsedColon.size > 2 ? parsedColon[2..-1].join(":") : parsedColon.last
 
     # Now we need to extract the first element which will be our bot command. Then we take anything after the command as
     # bot command argument, so we split it based on the command itself (in this case the first word in the @parsedMsg
@@ -55,8 +56,8 @@ class MrRoboto
 
     @botCmd = cmdParse[0]
     botCmdArgsSplit = @parsedMsg.split(@parsedMsg.split.first)
-    @botCmdArgs = botCmdArgsSplit[1].strip
 
+    @botCmdArgs = botCmdArgsSplit[1].strip
 
     # This might be a bit odd, but we need to strip the ! out of it so we then later send a message to the commands class
     @botCmdToSend = @botCmd.split("!").last.strip
@@ -134,8 +135,6 @@ class MrRoboto
 
 
     end
-
-
 
   end
 

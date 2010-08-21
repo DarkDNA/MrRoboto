@@ -1,13 +1,10 @@
 === BUGS and other nasty stuff ===
 
-	- still seems to be a big issue that some things received in the event are determined as
-	a NilClass so when i try to pass split to it , it crashes
 
-	- The issue is whwen reading from a raw socket some things come across as strings while others come across as NilClass (perhaps odd characters such as [ ] ! # ) ?
+**** After Caius looked at it, it seems to be an issue with more than one ":" in a line, and later on after the stuff is read, i split at the ":". To fix one option would be to read the entire MOTD fisrt, join a channel, and THEN begin parsing
 
-MrRoboto.rb:51:in `eventHandler': undefined method `split' for nil:NilClass (NoMethodError)
-        from MrRoboto.rb:108:in `run'
-        from MrRoboto.rb:126:in `<main>'
+	- we fixed it based on parsing on : , the freenode MOTD has multiple : in it so it was breaking parsing. Caius gave me a fix that split it on the 2nd : and ignored some stuff, and then only selected the 2nd element on. I'm still not 100% sure how this works, but at least it DOES work.. and i'm including a txt file of our conversation
+
 
 - Nasty bug, when entering just ! it crashes the bot, most likely due to crappy parsing
 

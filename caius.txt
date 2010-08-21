@@ -1,0 +1,141 @@
+[11:28]  <Plazma> i have a github
+[11:28]  <Plazma> but i don't want to share it with that many others just yet
+[11:28]  <Plazma> but i trust you :D
+[11:28]  <Caius> lol
+[11:28]  <Caius> I'm 'caius' on there, unsurprisingly :)
+[11:28]  <Plazma> haha
+[11:28]  <Plazma> one sec
+[11:28]  <Plazma> http://github.com/darkdna/MrRoboto
+[11:28]  <Plazma> using main.rb and MrRoboto-WIP.rb
+[11:29]  <Plazma> MrRoboto.rb is the older version that seems to work without much issue, the only real difference is in the -WIP i'm setting a fuckton of instance vars and have parsing in a seperate method
+[11:30]  <Plazma> works on efnet and other nets, 
+[11:30]  <Plazma> we have numerics in our MOTD that change but i never hit the EOF of the MOTD before it crashes.. and it crashes because something is coming up as nil 
+[11:30]  <Plazma> and then i try using parsing on nil, using split,, and it just is FUUUU
+[11:31]  <Plazma> and sorry about the shitty indenting, i had it great and the copy of vim on my VPS is fucked and stuff
+[11:32]  <Caius> heh, s'ok
+[11:32]  <Caius> looks like it screws up if the line contains more than one :
+[11:32]  <Caius> :gibson.freenode.net 372 MrRoboto2 :- Don't forget to check out these other Peer-Directed Projects: 
+[11:32]  <Plazma> ya
+[11:32]  <Plazma> right after that it fails
+[11:33]  <Plazma> oh? hmm
+[11:33]  <Plazma> what makes you say that
+[11:34]  <Caius> because it dies whilst processing that line
+[11:34]  <Plazma> hmm
+[11:34]  <Plazma> yea but how can you come to the consluion it's due to more than one :
+[11:35]  <Caius> you're splitting on :
+[11:35]  <Caius> and it dies on the first line with more than one : (from what I can see)
+[11:35]  <Caius> so at a guess, that's the issue
+[11:35]  <Plazma> ahh
+[11:36]  <Plazma> good call, i didn't even think of that
+[11:36]  <Plazma> so now.. possible solutions ? i was thinking of somehow not even parsing until the MOTD is processed
+[11:36]  <Caius> :kornbluth.freenode.net 372 MrRoboto2 :- Don't forget to check out these other Peer-Directed Projects:
+[11:36]  <Caius> parsedColon: ["", "kornbluth.freenode.net 372 MrRoboto2 ", "- Don't forget to check out these other Peer-Directed Projects", "\r\n"]
+[11:36]  <Caius> @parsedMsg: "\r\n"
+[11:36]  <Caius> cmdParse: []
+[11:36]  <Plazma> how did you get that data?
+[11:37]  <Caius> just added a few debugging 'puts' https://gist.github.com/7b0da4c2c8f5da27025c
+[11:37]  <Plazma> it's got a lot of work to do yet to make things better and i have a shit ton to learn about ruby but.. i won't learn anything by just reading books alone
+[11:38]  * Caius nods
+[11:38]  <Caius> It's a good project
+[11:38]  <Plazma> so i took this one because i can , and i think i've done exponentially well considering i knew nothing before hand
+[11:38]  <Caius> everyone writes an IRC bot from scratch at some point :)
+[11:38]  <Plazma> honestly i don't like a lot of libs.. that's why i dig C and stuff
+[11:38]  <Plazma> they make your life easier but 
+[11:38]  <Plazma> at my stage, i want to know how all the shit works
+[11:38]  <Caius> the code is fairly well written to be fair, doesn't smack of another language
+[11:38]  <Plazma> smack of another language? and htank you very much
+[11:39]  <Caius> you can usually tell if the author knows another language better (usually PHP)
+[11:39]  <Plazma> ahh
+[11:39]  <Plazma> wow that's the nicest thing i've been told <3
+[11:39]  <Plazma> i worry a lot about most of the programming nerds since they have such.. harsh egos
+[11:39]  <Plazma> everytime i ask for simple advice i get bombarded with "omg idiot why are you doing it this way"
+[11:40]  <Plazma> so it's discouraging... but folks like you give me hope :D
+[11:40]  <Caius> heh
+[11:40]  <Caius> get it working, then get it right
+[11:41]  <Caius> refactoring's a large part of being a programmer
+[11:41]  <Plazma> exactly! if you check my first rev's , my first rev was VERY C like
+[11:41]  <Plazma> lots of return calls
+[11:41]  <Plazma> and even regex's
+[11:41]  * Caius nods
+[11:41]  <Plazma> but then i made into an object
+[11:41]  <Plazma> and then i'm calling another object
+[11:41]  <Plazma> and my god it's nice
+[11:41]  <Caius> hehe
+[11:41]  <Plazma> the object keeps track of all the data instead of random variables or pointers to other data
+[11:42]  <Plazma> though the next rev i'm going to reduce the instance vars i think dramatically so i can keep things more in scope
+[11:42]  <Caius> :D
+[11:42]  <Caius> MrRoboto2 has joined (~MrRoboto2@durlings1.demon.co.uk)
+[11:42]  <Plazma> what channel?
+[11:43]  <Caius> #bots
+[11:43]  <Caius> basically
+[11:43]  <Plazma> what network?
+[11:43]  <Caius> freenode
+[11:43]  <Plazma> holy crap?
+[11:43]  <Plazma> how
+[11:43]  <Caius> basically you want to split on the colon, but only the first one
+[11:44]  <Plazma> ok
+[11:44]  <Plazma> haha i just showed you another bug :p
+[11:44]  <Caius> easiest way to do that is to split on ":", ignore the first element and then join the rest back with (":")
+[11:44]  <Caius> heh
+[11:45]  <Plazma> instead of " :" ?
+[11:45]  <Caius> but you actually want to ignore the first one (which starts the line), split on the second (which denotes the start of the text we care about) and then ignore the rest
+[11:45]  <Caius> so basically, if parsedColon contains more than two elements, ignore the first two and join the rest back into one string
+[11:46]  <Plazma> hmm
+[11:46]  <Caius> if it doesn't contain more than two elements, just grab the last one
+[11:46]  <Caius> or in other words
+[11:46]  <Caius>     @parsedMsg = parsedColon.size > 2 ? parsedColon[2..-1].join(":") : parsedColon.last 
+[11:46]  <Plazma> hmm
+[11:46]  <Plazma> i sort of understand what you said but i'm still somewhat confused on it.. i know we ignore the first element due to it being blank
+[11:47]  <Plazma> but parsedColon[2..-1] is confusing
+[11:47]  <Caius> arrays are 0-indexed yes? (first element is at position 0, second at position 1, etc)
+[11:47]  <Plazma> yes
+[11:47]  <Caius> in the same way, negative numbers count from the end of the array
+[11:47]  <Caius> so -1 is the last element, -2 is the last but one element, etc
+[11:47]  <Plazma> in ruby or in general?
+[11:47]  <Caius> in general
+[11:48]  <Caius> and ruby
+[11:48]  <Plazma> so why 2 instead of 1?
+[11:48]  <Plazma> like wouldn't it be parsedColon[1..-1] ? 
+[11:48]  <Caius> and 2..-1 is saying select a range of elements, starting with element #2 up to element #-1. Which effectively means select element 3 through the last element
+[11:49]  <Caius> ["", "gibson.freenode.net 372 MrRoboto2 ", "- Don't forget to check out these other Peer-Directed Projects", "\r\n"]
+[11:49]  <Caius> you want to ignore the first two elements in that
+[11:49]  <Plazma> but how will that affect my stuff later? 
+[11:49]  <Plazma> i mean that'll fix the motd, but later on won't that cause issues?
+[11:49]  <Caius> nope
+[11:50]  <Plazma> hmm
+[11:50]  <Caius> well, not in connecting
+[11:50]  <Caius> your stuff later on expects a single string I think
+[11:50]  <Caius> so by joining the rest of the array back into one string, it gets that
+[11:50]  <Plazma> ahh right
+[11:50]  <Plazma> but you said join with :
+[11:50]  <Plazma> won't that cause.. major issues with parsing?
+[11:50]  <Caius> yeah, because that's what you split with
+[11:50]  <Plazma> hmm
+[11:51]  <Plazma> i guess i'm a bit lost now
+[11:51]  <Caius> you're getting sent ": gibson.freenode.net 372 MrRoboto2 :- Don't forget blah blah:"
+[11:51]  <Caius> and the text you want in that line is "- Don't forget blah blah:"
+[11:51]  <Caius> actually, you could just split on ":-" and ignore the first element
+[11:52]  <Caius> or ":- "
+[11:52]  <Plazma> well parsedMsg is used for other stuff later as you see
+[11:52]  <Plazma> not just the motd
+[11:52]  <Caius> [": gibson.freenode.net 372 MrRoboto2 ", "Don't forget blah blah:"]
+[11:52]  <Caius> yeah, but IRC lines follow the same format
+[11:52]  <Plazma> so if i get a command like :nick!ident@host PRIVMSG #channel :FFFUUU
+[11:52]  <Plazma> will it still parse it correctly?
+[11:52]  <Caius> ah yes, forgot the - is the motd
+[11:52]  <Caius> ignore the stuff about :- then
+[11:52]  <Caius> stuff above will yeah
+[11:53]  <Plazma> guess only one way to find out
+[11:53]  <Caius> :)
+[11:53]  <Plazma> so you really don't think i'm that bad of a coder thus far :P
+[11:53]  <Caius> nope
+[11:55]  <Plazma> ok so.. when i issue the !quit command, it does a similar error
+[11:55]  <Plazma> i can't figure out why
+[11:56]  <Caius> drop some debugging output in to see what the variables are being set to
+[11:57]  <Plazma> the instance vars?
+[11:58]  <Caius> yeah, so you can see how it's parsed each line
+[11:59]  <Caius> right, dinner. have fun!
+[11:59]  <Plazma> ahh , i can do that later
+[11:59]  <Plazma> thanks so much! i owe you
+[11:59]  <Plazma> <3 take care
+[11:59]  <Caius> np :)
