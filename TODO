@@ -13,6 +13,8 @@
         from /home/plazma/code/MrRoboto/MrRoboto-WIP.rb:148:in `run'
         from main.rb:9:in `<main>'
 
+-- POSSIBLE FIX: If first char in botCmd is ! and the next char is blank , also if 2nd char through last char is a ! . Once we check for that, that's when we determine if botCmd is set?
+
 
 - Bug when QUIT (though command works)
 
