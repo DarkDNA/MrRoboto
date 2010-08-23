@@ -48,6 +48,12 @@ class MrRoboto
     # Here as it turns out the last part of our parsed string is the acutal message inputted by the users. So we store
     # This in an instance variable for the whole object to use
     #@parsedMsg = parsedColon.last
+    
+    # We also avoid issues with MOTD's having more than 1 : in them by checking to see if our message
+    # that is parsed contains 2 or more elemnts, if it does ignore the first 2 elements (0 and 1)
+    # and split on the 2nd element and then join the rest 
+    # back into a single string, Otherwise just accept the last element that's parsed. I am using [2..-1] which
+    #basically says to select everything starting at the 2nd element up to the last element
     @parsedMsg = parsedColon.size > 2 ? parsedColon[2..-1].join(":") : parsedColon.last
 
     # Now we need to extract the first element which will be our bot command. Then we take anything after the command as
@@ -60,8 +66,11 @@ class MrRoboto
     @botCmdArgs = botCmdArgsSplit[1].strip
 
     # This might be a bit odd, but we need to strip the ! out of it so we then later send a message to the commands class
+   
     @botCmdToSend = @botCmd.split("!").last.strip
 
+    puts "botCmd split @ ! last strip: #{@botCmd.split("!").last.strip}"
+    puts "botCmdToSend: #{@botCmdToSend}"
     # The 2nd element in our parsing contians one long string of a nick!host Message Type Nick or Channel so we store it
     # for parsing
     nickHostMsgChan = parsedColon[1]
@@ -77,7 +86,7 @@ class MrRoboto
         @pongServ = parsedSpace[1]
     else
         #We can store the message type here (if it's PRIVMSG , NOTICE,  ..etc)
-	@isPing = false
+	      @isPing = false
         @msgType = parsedSpace[1]
     end
 
@@ -92,8 +101,10 @@ class MrRoboto
 
     # We now store the nick as a instance variable for the whole object to use
     @streamNick = parsedEpt[0]
-
-  end
+    
+ 
+  
+  end # end of method
 
 
 	def eventHandler(s)
