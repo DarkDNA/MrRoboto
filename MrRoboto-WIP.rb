@@ -60,17 +60,29 @@ class MrRoboto
     # bot command argument, so we split it based on the command itself (in this case the first word in the @parsedMsg
     cmdParse = @parsedMsg.split
 
-    @botCmd = cmdParse[0]
-    botCmdArgsSplit = @parsedMsg.split(@parsedMsg.split.first)
+    puts "cmdParse[0]: #{cmdParse[0]}"
+    puts "cmdParse[1]: #{cmdParse[1]}"
+    
+    # This checks to see if the first parsed letter is a ! and the next is a blank space , which really
+    # says "is this ONLY a ! "
+    if cmdParse[0] != "!" && cmdParse[1] != " "
+           
+      @botCmd = cmdParse[0]
+      botCmdArgsSplit = @parsedMsg.split(@parsedMsg.split.first)
 
-    @botCmdArgs = botCmdArgsSplit[1].strip
+      @botCmdArgs = botCmdArgsSplit[1].strip
 
     # This might be a bit odd, but we need to strip the ! out of it so we then later send a message to the commands class
+      
+      @botCmdToSend = @botCmd.split("!").last.strip
+    
+    else
+      @botCmd = ""
+      @botCmdArgs = ""
+    end
+    #puts "botCmd split @ ! last strip: #{@botCmd.split("!").last.strip}"
+   # puts "botCmdToSend: #{@botCmdToSend}"
    
-    @botCmdToSend = @botCmd.split("!").last.strip
-
-    puts "botCmd split @ ! last strip: #{@botCmd.split("!").last.strip}"
-    puts "botCmdToSend: #{@botCmdToSend}"
     # The 2nd element in our parsing contians one long string of a nick!host Message Type Nick or Channel so we store it
     # for parsing
     nickHostMsgChan = parsedColon[1]
