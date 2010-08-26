@@ -64,24 +64,18 @@ class MrRoboto
     # store the bot command temporarily and split it up by whitespace so we can sanitize input
     
     # This checks to see if the first parsed letter is a ! and the next is a blank space , which really
-    # says "is this ONLY a ! "
-    
-    #fr some reason this is coming across as FixNum for the ASCII representation ?
-    
-    #@botCmd is a class but each element in the string is a Fixnum or an ASCII # it seems
-    # turns out this is true only on ruby 1.8 and below, 1.9 returns the char
-    #puts "#{@botCmd.class}"
-    #puts "#{@botCmd[0,1]} , #{@botCmd[1,1]}"
-    
-    puts "#{@botCmd[1..-1]}"
-    if (@botCmd[0,1] == "!" && @botCmd[1,1] == "") || (@botCmd[1..-1] == "!")
+    # says "is this ONLY a ! " OR this checks that if the first char in the cmmand is ! and any other
+    # char's after the first matches a ! 
+ 
+    if (@botCmd[0,1] == "!" && @botCmd[1,1] == "") || (@botCmd[0,1] == "!" && @botCmd[1..-1] =~ /!/)
 
-      # do nothing, invalid
-      puts "INVALID"
+      # Invalid command, set @botCmd to nothing
+      puts "Invalid Command"
       @botCmd = ""
       
     else
      
+      # looks like valid input, lets continue and parse the args out of the parsed message
       botCmdArgsSplit = @parsedMsg.split(@parsedMsg.split.first)
 
       @botCmdArgs = botCmdArgsSplit[1].strip
@@ -92,9 +86,6 @@ class MrRoboto
       @botCmdToSend = @botCmdToSend.strip if @botCmdToSend.is_a?(String)
 
     end
-    
-    #puts "botCmd split @ ! last strip: #{@botCmd.split("!").last.strip}"
-   # puts "botCmdToSend: #{@botCmdToSend}"
    
     # The 2nd element in our parsing contians one long string of a nick!host Message Type Nick or Channel so we store it
     # for parsing
