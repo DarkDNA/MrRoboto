@@ -43,7 +43,7 @@ class MrRoboto
     # First we take the input stream from the event handler and split it by : to remove the colons at the beginning
     # and end of a raw irc string
 
-    parsedColon = inputStream.split(":")
+    parsedColon = inputStream.split(":") if inputStream.is_a?(String)
 
     # Here as it turns out the last part of our parsed string is the acutal message inputted by the users. So we store
     # This in an instance variable for the whole object to use

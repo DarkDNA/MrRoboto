@@ -67,7 +67,11 @@ class BotCommands
 
 	def say(message)
 	
-		@stream.puts("PRIVMSG #{@channel} :#{message}")
+	  if message == ""
+	    @stream.puts("PRIVMSG #{@channel} :This command requires a message to send")
+	  else
+		  @stream.puts("PRIVMSG #{@channel} :#{message}")
+	  end
 
 	end
 
