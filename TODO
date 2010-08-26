@@ -1,15 +1,5 @@
 === BUGS and other nasty stuff ===
 
-
-**** After Caius looked at it, it seems to be an issue with more than one ":" in a line, and later on after the stuff is read, i split at the ":". To fix one option would be to read the entire MOTD fisrt, join a channel, and THEN begin parsing
-
-	- we fixed it based on parsing on : , the freenode MOTD has multiple : in it so it was breaking parsing. Caius gave me a fix that split it on the 2nd : and ignored some stuff, and then only selected the 2nd element on. I'm still not 100% sure how this works, but at least it DOES work.. and i'm including a txt file of our conversation
-
--- POSSIBLE FIX: If first char in botCmd is ! and the next char is blank , also if 2nd char through last char is a ! . Once we check for that, that's when we determine if botCmd is set?
-
-- Fixed the single ! bug but now need to do the same for when a line starts with ! and any other char in it is ! to not do anything. Fixed the ! bug by having it match the range of chars in the string is a ! and if so, set the botcmd to nothing or ""
-
-
 - Bug when QUIT (though command works)
 
 - caius says to do instance variables and print htem to see what data is acutally being sent, also look into the inspect command as well as the .class
@@ -24,15 +14,6 @@
 
 - Fix things to maybe use an array or return an array of parsed messages instead of having a that many instance variables.
 
-- Allow commands to take arguments such as !beer <NICK>
-	- parsing is now fixed and makes sure the command is first, so now we need to have everything after split correctly:
-	- for !beer just 1 arg so it would take the next elemnt ONLY
-		- if arg = nick then gives beer to nick
-		- if arg = me , gives beer to self
-		- if no arg , give beer to self
-	
-		- can do this with optional args or method(*args)
-			- need to figure out if *args is really an array?
 
 - add a hug command that takes 1 parameter (nick)
 

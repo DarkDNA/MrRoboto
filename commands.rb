@@ -10,7 +10,11 @@ class BotCommands
 
 	def beer(*args)
 
-		@stream.puts("PRIVMSG #{@channel} :\001ACTION gives #{@nick} a beer\001")
+    if args[0] == "" || args[0] == "me"
+		  @stream.puts("PRIVMSG #{@channel} :\001ACTION gives #{@nick} a beer\001")
+	  else
+	    @stream.puts("PRIVMSG #{@channel} :\001ACTION gives #{args[0]} a beer\001")
+    end
 
 	end
 
