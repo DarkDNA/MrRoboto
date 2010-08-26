@@ -2,7 +2,6 @@
 
 - Bug when QUIT (though command works)
 
-- caius says to do instance variables and print htem to see what data is acutally being sent, also look into the inspect command as well as the .class
 
 /home/plazma/code/MrRoboto/MrRoboto-WIP.rb:46:in `parseStream': undefined method `split' for nil:NilClass (NoMethodError)
         from /home/plazma/code/MrRoboto/MrRoboto-WIP.rb:108:in `eventHandler'
@@ -14,9 +13,9 @@
 
 - Fix things to maybe use an array or return an array of parsed messages instead of having a that many instance variables.
 
-
-- add a hug command that takes 1 parameter (nick)
-
+- Expand on !Help command for every command arg
+	- ex: if !help hug then display help for !hug
+	
 - figure out how to get with services and identify to nickserv and then fix auth system accordingly
 	- do this on freenode with CAP identify-msg above OR you could /whois someone and parse
 

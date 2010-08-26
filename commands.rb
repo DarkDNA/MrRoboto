@@ -17,6 +17,16 @@ class BotCommands
     end
 
 	end
+	
+	def hug(*args)
+
+    if args[0] == "" || args[0] == "me"
+		  @stream.puts("PRIVMSG #{@channel} :\001ACTION gives #{@nick} a big hug.\001")
+	  else
+	    @stream.puts("PRIVMSG #{@channel} :\001ACTION gives #{args[0]} a big hug.\001")
+    end
+
+	end
 
 	def quit(*args)
 
@@ -65,7 +75,7 @@ class BotCommands
 
 	def help(*args)
 
-		@stream.puts("PRIVMSG #{@channel} :Current commands: !beer , !date , !time, !help, !say")
+		@stream.puts("PRIVMSG #{@channel} :Current commands: !beer , !date , !time, !help, !say, !hug")
 
 	end
 
