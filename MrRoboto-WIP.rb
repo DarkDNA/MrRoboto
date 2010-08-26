@@ -60,26 +60,39 @@ class MrRoboto
     # bot command argument, so we split it based on the command itself (in this case the first word in the @parsedMsg
     cmdParse = @parsedMsg.split
 
-    puts "cmdParse[0]: #{cmdParse[0]}"
-    puts "cmdParse[1]: #{cmdParse[1]}"
+    @botCmd = cmdParse[0]
+    # store the bot command temporarily and split it up by whitespace so we can sanitize input
     
     # This checks to see if the first parsed letter is a ! and the next is a blank space , which really
     # says "is this ONLY a ! "
-    if cmdParse[0] != "!" && cmdParse[1] != " "
-           
-      @botCmd = cmdParse[0]
+    
+    #fr some reason this is coming across as FixNum for the ASCII representation ?
+    
+    #@botCmd is a class but each element in the string is a Fixnum or an ASCII # it seems
+    # turns out this is true only on ruby 1.8 and below, 1.9 returns the char
+    #puts "#{@botCmd.class}"
+    #puts "#{@botCmd[0,1]} , #{@botCmd[1,1]}"
+    
+    puts "#{@botCmd[1..-1]}"
+    if (@botCmd[0,1] == "!" && @botCmd[1,1] == "") || (@botCmd[1..-1] == "!")
+
+      # do nothing, invalid
+      puts "INVALID"
+      @botCmd = ""
+      
+    else
+     
       botCmdArgsSplit = @parsedMsg.split(@parsedMsg.split.first)
 
       @botCmdArgs = botCmdArgsSplit[1].strip
 
     # This might be a bit odd, but we need to strip the ! out of it so we then later send a message to the commands class
       
-      @botCmdToSend = @botCmd.split("!").last.strip
-    
-    else
-      @botCmd = ""
-      @botCmdArgs = ""
+      @botCmdToSend = @botCmd.split("!").last
+      @botCmdToSend = @botCmdToSend.strip if @botCmdToSend.is_a?(String)
+
     end
+    
     #puts "botCmd split @ ! last strip: #{@botCmd.split("!").last.strip}"
    # puts "botCmdToSend: #{@botCmdToSend}"
    
