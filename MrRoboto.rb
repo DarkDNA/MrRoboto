@@ -97,11 +97,9 @@ class MrRoboto
     # This only happens every so often, but we need to see if the first element is a PING message and if it is we set a flag
     # Denoting it's a ping message and then store the :server portion for later PONG usage
 
-    puts "ParsedSpace[0]: #{parsedSpace[0].strip}"
-
-    if parsedSpace[0].strip == "PING"
+    if parsedColon[0].strip == "PING"
         @isPing = true
-        @pongServ = parsedSpace[1]
+        @pongServ = ":#{parsedColon[1]}"
     else
         #We can store the message type here (if it's PRIVMSG , NOTICE,  ..etc)
 	      @isPing = false
@@ -140,11 +138,10 @@ class MrRoboto
     #create a new object for the bot commands and makes it dynamic
     botCommands = BotCommands.new(s, @nickOrChan, @streamNick)
 
-    puts "Is Ping?:#{@isPing}"
     # Is the ping flag set? that means we have a ping message, so let's reply accordingly
     if @isPing == true
 
-        botCommands.send(ping, @pongServ.strip)
+        botCommands.send(:ping, @pongServ)
 
     end
 
@@ -155,8 +152,6 @@ class MrRoboto
         if botCommands.respond_to?(@botCmdToSend)
         
             botCommands.send(@botCmdToSend, @botCmdArgs)
-
-	    #puts("BOT COMMAND ARGS: #{@botCmdArgs}")
 
         else
 
