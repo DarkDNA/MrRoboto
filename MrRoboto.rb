@@ -43,7 +43,7 @@ class MrRoboto
     # First we take the input stream from the event handler and split it by : to remove the colons at the beginning
     # and end of a raw irc string
 
-    parsedColon = inputStream.split(":") if inputStream.is_a?(String)
+    parsedColon = inputStream.split(":") 
 
     # Here as it turns out the last part of our parsed string is the acutal message inputted by the users. So we store
     # This in an instance variable for the whole object to use
@@ -123,7 +123,7 @@ class MrRoboto
   end # end of method
 
 
-	def eventHandler(s)
+    def eventHandler(s)
 
 		#Put output to screen
 	
@@ -135,15 +135,16 @@ class MrRoboto
     # variables it sets later
     parseStream(eventStream)
 
+    #create a new object for the bot commands and makes it dynamic
+    botCommands = BotCommands.new(s, @nickOrChan, @streamNick)
+
+    puts "Is Ping?:#{@isPing}"
     # Is the ping flag set? that means we have a ping message, so let's reply accordingly
     if @isPing == true
 
-        botCommands.send(:ping, @pongServ.strip)
+        botCommands.send(ping, @pongServ.strip)
 
-	  end
-
-		#create a new object for the bot commands and makes it dynamic
-		botCommands = BotCommands.new(s, @nickOrChan, @streamNick)
+    end
 
     # This has a nasty bug when ! is the only char in the stream it dies
     if @botCmd.include?("!")

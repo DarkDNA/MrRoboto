@@ -36,6 +36,7 @@ class BotCommands
 
 		if x == @nick
 
+			puts "QUITTING!"
 			@stream.puts("QUIT :FFFFFFUUUUUUUU")
 
 		end
