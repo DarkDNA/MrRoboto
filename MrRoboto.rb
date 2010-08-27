@@ -97,6 +97,8 @@ class MrRoboto
     # This only happens every so often, but we need to see if the first element is a PING message and if it is we set a flag
     # Denoting it's a ping message and then store the :server portion for later PONG usage
 
+    puts "ParsedSpace[0]: #{parsedSpace[0].strip}"
+
     if parsedSpace[0].strip == "PING"
         @isPing = true
         @pongServ = parsedSpace[1]
