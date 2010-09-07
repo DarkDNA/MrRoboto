@@ -1,11 +1,11 @@
 === BUGS and other nasty stuff ===
 
-- My fix to the QUIT command by exiting the entire application when we get "quit" totally ignores and does not get the chance to send an acutal QUIT :message. Probably should look at other solutions
-
 
 ==== FEATURES TO ADD
 
 - Fix things to maybe use an array or return an array of parsed messages instead of having a that many instance variables.
+
+- Allow users to directly PRIVMSG bot and have same functionality and have bot talk in PRIVMSG
 
 - expand !time command to take timezones
 
