@@ -1,13 +1,5 @@
 === BUGS and other nasty stuff ===
 
-- Bug when QUIT (though command works)
-
-
-/home/plazma/code/MrRoboto/MrRoboto-WIP.rb:46:in `parseStream': undefined method `split' for nil:NilClass (NoMethodError)
-        from /home/plazma/code/MrRoboto/MrRoboto-WIP.rb:108:in `eventHandler'
-        from /home/plazma/code/MrRoboto/MrRoboto-WIP.rb:148:in `run'
-        from main.rb:9:in `<main>'
-
 
 ==== FEATURES TO ADD
 
