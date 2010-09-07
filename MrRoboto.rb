@@ -43,7 +43,7 @@ class MrRoboto
     # First we take the input stream from the event handler and split it by : to remove the colons at the beginning
     # and end of a raw irc string
 
-    parsedColon = inputStream.split(":") 
+    parsedColon = inputStream.split(":") if inputStream.is_a?(String)
 
     # Here as it turns out the last part of our parsed string is the acutal message inputted by the users. So we store
     # This in an instance variable for the whole object to use
@@ -54,7 +54,7 @@ class MrRoboto
     # and split on the 2nd element and then join the rest 
     # back into a single string, Otherwise just accept the last element that's parsed. I am using [2..-1] which
     #basically says to select everything starting at the 2nd element up to the last element
-    @parsedMsg = parsedColon.size > 2 ? parsedColon[2..-1].join(":") : parsedColon.last
+    @parsedMsg = parsedColon.size  > 2  ? parsedColon[2..-1].join(":") : parsedColon.last
 
     # Now we need to extract the first element which will be our bot command. Then we take anything after the command as
     # bot command argument, so we split it based on the command itself (in this case the first word in the @parsedMsg
@@ -84,6 +84,15 @@ class MrRoboto
       
       @botCmdToSend = @botCmd.split("!").last
       @botCmdToSend = @botCmdToSend.strip if @botCmdToSend.is_a?(String)
+
+    end
+
+    # Above we parsed the commands already, but to avoid any issues / bugs in the console, we check in the parser
+    # if the command is the command to quit. If it is, we're quitting the irc server anyway, so we just exit the
+    # entire program, otherwise it tries to call/parse nil data being passed
+    if @botCmdToSend == "quit"
+
+        exit
 
     end
    
