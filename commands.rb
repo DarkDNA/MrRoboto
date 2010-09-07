@@ -10,27 +10,27 @@ class BotCommands
 
 	def beer(*args)
 
-    if args[0] == "" || args[0] == "me"
+        if args[0] == "" || args[0] == "me"
 		  @stream.puts("PRIVMSG #{@channel} :\001ACTION gives #{@nick} a beer\001")
-	  else
-	    @stream.puts("PRIVMSG #{@channel} :\001ACTION gives #{args[0]} a beer\001")
-    end
+	    else
+	      @stream.puts("PRIVMSG #{@channel} :\001ACTION gives #{args[0]} a beer\001")
+        end
 
 	end
 	
 	def hug(*args)
 
-    if args[0] == "" || args[0] == "me"
+      if args[0] == "" || args[0] == "me"
 		  @stream.puts("PRIVMSG #{@channel} :\001ACTION gives #{@nick} a big hug.\001")
 	  else
 	    @stream.puts("PRIVMSG #{@channel} :\001ACTION gives #{args[0]} a big hug.\001")
-    end
+      end
 
 	end
 
 	def quit(*args)
 
-		users = ["Plazma", "Plazma-Rooolz"]
+	    users = ["Plazma", "Plazma-Rooolz"]
 
 		users.each { |x|
 

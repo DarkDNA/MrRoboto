@@ -123,13 +123,13 @@ class MrRoboto
   end # end of method
 
 
-    def eventHandler(s)
+ def eventHandler(s)
 
-		#Put output to screen
+	#Put output to screen
 	
-		eventStream = s.gets
+	eventStream = s.gets
 
-		puts eventStream
+	puts eventStream
 
     # Here we call the parser above and prase out each line to see what it is, and we can then peform logic on the instance
     # variables it sets later
@@ -165,15 +165,15 @@ class MrRoboto
 
 
 
-	def run()
+  def run()
 
-		while true
+	while true
 			
-			eventHandler(@stream)
-
-		end
+		eventHandler(@stream)
 
 	end
+
+  end
 
 
 end
