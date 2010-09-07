@@ -87,16 +87,6 @@ class MrRoboto
 
     end
 
-    # Above we parsed the commands already, but to avoid any issues / bugs in the console, we check in the parser
-    # if the command is the command to quit. If it is, we're quitting the irc server anyway, so we just exit the
-    # entire program, otherwise it tries to call/parse nil data being passed
-
-    # THE PROBLEM WITH THIS IS THAT IT DOESN"T DISPLAY ANY QUIT MESSAGE
-    if @botCmdToSend == "quit"
-
-        exit
-
-    end
    
     # The 2nd element in our parsing contians one long string of a nick!host Message Type Nick or Channel so we store it
     # for parsing

@@ -38,6 +38,7 @@ class BotCommands
 
 			puts "QUITTING!"
 			@stream.puts("QUIT :FFFFFFUUUUUUUU")
+            exit
 
 		end
 
