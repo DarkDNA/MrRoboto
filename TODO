@@ -1,5 +1,7 @@
 === BUGS and other nasty stuff ===
 
+- My fix to the QUIT command by exiting the entire application when we get "quit" totally ignores and does not get the chance to send an acutal QUIT :message. Probably should look at other solutions
+
 
 ==== FEATURES TO ADD
 
