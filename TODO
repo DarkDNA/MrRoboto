@@ -13,13 +13,13 @@
 
 - Fix things to maybe use an array or return an array of parsed messages instead of having a that many instance variables.
 
-- Expand on !Help command for every command arg
-	- ex: if !help hug then display help for !hug
-
 - expand !time command to take timezones
 
 - add weather feature and allow it to take a zip code arg
 	
+- filter/parse raw messages to come across like a real irc client.. 
+    - once done, implement this as the user control/interface
+
 - figure out how to get with services and identify to nickserv and then fix auth system accordingly
 	- do this on freenode with CAP identify-msg above OR you could /whois someone and parse
 

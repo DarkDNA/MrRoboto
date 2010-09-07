@@ -102,7 +102,7 @@ class MrRoboto
         @pongServ = ":#{parsedColon[1]}"
     else
         #We can store the message type here (if it's PRIVMSG , NOTICE,  ..etc)
-	      @isPing = false
+	    @isPing = false
         @msgType = parsedSpace[1]
     end
 

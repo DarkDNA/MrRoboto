@@ -76,7 +76,30 @@ class BotCommands
 
 	def help(*args)
 
-		@stream.puts("PRIVMSG #{@channel} :Current commands: !beer , !date , !time, !help, !say, !hug")
+        case args[0]
+
+            when ""
+		        @stream.puts("PRIVMSG #{@channel} :Current commands: !beer , !date , !time, !help, !say, !hug")
+
+            when "beer"
+                @stream.puts("PRIVMSG #{@channel} :Give beer to user. Usage: !beer or !beer <nick>")
+
+            when "hug"
+                @stream.puts("PRIVMSG #{@channel} :Spread some love with a hug! Usage: !hug or !hug <nick>")
+
+            when "time"
+                @stream.puts("PRIVMSG #{@channel} :Checkin' the time. Usage: !time")
+
+            when "date"
+                @stream.puts("PRIVMSG #{@channel} :What's the date? Usage: !date")
+
+            when "say"
+                @stream.puts("PRIVMSG #{@channel} :Tell me to say things. Usage: !say <message>")
+
+            when "help"
+                @stream.puts("PRIVMSG #{@channel} :Tells you what I can do. Usage: !say <message>")
+
+        end
 
 	end
 
