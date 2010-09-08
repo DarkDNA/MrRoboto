@@ -4,36 +4,30 @@ require 'commands.rb'
 class MrRoboto
 	
 	#This is just the connection info that gets passed when we create our new bot object
-	def initialize(server, port, nick, startchan)
+  def initialize(server, port, nick, startchan)
 
-		@server = server
-		@port = port
-		@nick = nick
-		@startchan = startchan
+	@server = server
+	@port = port
+	@nick = nick
+	@startchan = startchan
 
-	end
+  end
 
-	#this method just does the connecting by sending raw IRC commands
-	def connect()
+  #this method just does the connecting by sending raw IRC commands
+  def connect()
 	
-		@stream = TCPSocket.open(@server, @port)
-		@stream.puts("NICK #{@nick}")
-		@stream.puts("USER #{@nick} 8 * :#{@nick}")
-		@stream.puts("JOIN #{@startchan}")
+	@stream = TCPSocket.open(@server, @port)
+	@stream.puts("NICK #{@nick}")
+	@stream.puts("USER #{@nick} 8 * :#{@nick}")
+	@stream.puts("JOIN #{@startchan}")
 	
-	end
+  end
 
-	def disconnect(s)
+  def joinChannel(s, channel)
 
-		s.puts("QUIT FFFFFUUUU")	
-
-	end
-
-	def joinChannel(s, channel)
-
-		s.puts("JOIN #{channel}")
+	s.puts("JOIN #{channel}")
  
-	end
+  end
 
   # After several revision i decided it would be much easier to have a method parse everything and then set instance
   # variables accordingly
@@ -119,7 +113,6 @@ class MrRoboto
     # We now store the nick as a instance variable for the whole object to use
     @streamNick = parsedEpt[0]
     
- 
   
   end # end of method
 
