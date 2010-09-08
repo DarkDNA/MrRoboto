@@ -129,8 +129,15 @@ class MrRoboto
     # variables it sets later
     parseStream(eventStream)
 
-    #create a new object for the bot commands and makes it dynamic
-    botCommands = BotCommands.new(s, @nickOrChan, @streamNick)
+    #create a new object for the bot commands and makes it dynamic. If the parsed secion (stored in @nickOrChan) is the same nick as the bot, then that means it's a private message to the bot, so create a new bot object accordingly to respond to the private message. Otherwise it's a channel stream so output stuff to the channel.
+
+    if @nickOrChan == @nick
+
+        botCommands = BotCommands.new(s, @streamNick, @streamNick)
+    else
+        botCommands = BotCommands.new(s, @nickOrChan, @streamNick)
+
+    end
 
     # Is the ping flag set? that means we have a ping message, so let's reply accordingly
     if @isPing == true
