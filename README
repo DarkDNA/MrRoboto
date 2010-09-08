@@ -1,0 +1,13 @@
+Mr Roboto!
+=========
+
+A ruby bot coded in ruby as a learning experience as well as for fun :)
+
+
+How to use
+==========
+
+1. Get the source from github
+2. Run "ruby main.rb" to start the bot. 
+
+    - I plan to make the main.rb take parameters to connect to a server / chan and handle errors ..etc
