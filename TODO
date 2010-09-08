@@ -9,13 +9,6 @@
 
 - need to handle if nick is already taken message/numeric (sent by ircd)
 
-- Allow users to directly PRIVMSG bot and have same functionality and have bot talk in PRIVMSG
-    - as it stands this does not work because it sets @nickOrChan to the channel or nick, so when the new botCommands object is created AND when you privmsg the bot, it sets @nickOrChan to the bots nick
-
-    - solution is to put some logic in to determine if @nickOrChan is a channel or the bots' nick
-
-        - if it's a channel, then it will send to channel
-        - if it's the bot's nick, then it will have to parse the incoming message an send it to the nick
 
 - expand !time command to take timezones
 
@@ -23,7 +16,6 @@
 	
 - filter/parse raw messages to come across like a real irc client.. 
     - once done, implement this as the user control/interface
-
 
 - figure out how to get with services and identify to nickserv and then fix auth system accordingly
 	- do this on freenode with CAP identify-msg above OR you could /whois someone and parse
