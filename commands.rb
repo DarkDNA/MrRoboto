@@ -83,23 +83,26 @@ class BotCommands
             when ""
 		        @stream.puts("PRIVMSG #{@channel} :Current commands: !beer , !date , !time, !help, !say, !hug")
 
-            when "beer"
+            when "!beer" , "beer"
                 @stream.puts("PRIVMSG #{@channel} :Give beer to user. Usage: !beer or !beer <nick>")
 
-            when "hug"
+            when "!hug", "hug"
                 @stream.puts("PRIVMSG #{@channel} :Spread some love with a hug! Usage: !hug or !hug <nick>")
 
-            when "time"
+            when "!time", "time"
                 @stream.puts("PRIVMSG #{@channel} :Checkin' the time. Usage: !time")
 
-            when "date"
+            when "!date", "date"
                 @stream.puts("PRIVMSG #{@channel} :What's the date? Usage: !date")
 
-            when "say"
+            when "!say", "say"
                 @stream.puts("PRIVMSG #{@channel} :Tell me to say things. Usage: !say <message>")
 
-            when "help"
+            when "!help", "help"
                 @stream.puts("PRIVMSG #{@channel} :Tells you what I can do. Usage: !say <message>")
+
+            else
+                @stream.puts("PRIVMSG #{@channel} :Help for command '#{args[0]}' not found")
 
         end
 

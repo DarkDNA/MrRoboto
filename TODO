@@ -3,11 +3,22 @@
 
 ==== FEATURES TO ADD
 
-- Fix things to maybe use an array or return an array of parsed messages instead of having a that many instance variables.
+*** IMPORTANT ****
+
+- Add security feature so if you can't connect to a server it dies and gives user a nice message (exceptions)
+
+- need to handle if nick is already taken message/numeric (sent by ircd)
 
 - Fix a main.rb file so that when you run it with params, it creates / runs the bot
 
-- need to handle if nick is already taken message/numeric (sent by ircd)
+- Add section if a command entered is not found, then display message to user saying so
+
+- add default case handler for help menu
+
+
+---- less important ----
+
+- Fix things to maybe use an array or return an array of parsed messages instead of having a that many instance variables.
 
 
 - expand !time command to take timezones
