@@ -13,8 +13,6 @@
 
 - Add section if a command entered is not found, then display message to user saying so
 
-- add default case handler for help menu
-
 
 ---- less important ----
 
