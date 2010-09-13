@@ -11,6 +11,10 @@
 
 - Fix a main.rb file so that when you run it with params, it creates / runs the bot
 
+- Add tell command similar to say, but takes 2 args (required) -- nick and message
+	- error/tell user if args aren't right
+	- will send PRIVMSG to nick
+
 
 ---- less important ----
 
