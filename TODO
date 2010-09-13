@@ -11,8 +11,6 @@
 
 - Fix a main.rb file so that when you run it with params, it creates / runs the bot
 
-- Add section if a command entered is not found, then display message to user saying so
-
 
 ---- less important ----
 

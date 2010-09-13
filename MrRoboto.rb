@@ -1,5 +1,5 @@
 require 'socket'
-require 'commands.rb'
+require './commands.rb'
 
 class MrRoboto
 	
@@ -156,7 +156,18 @@ class MrRoboto
 
         else
 
-            # must not respond to anything, so we just ignore it
+	    # Make sure we send it to the correct destination (channel or private msg)
+
+	    if @nickOrChan == @nick
+
+                @stream.puts("PRIVMSG #{@streamNick} :#{@botCmd} command not found.")
+
+            else
+		
+                @stream.puts("PRIVMSG #{@nickOrChan} :#{@botCmd} command not found.")
+
+	    end
+
         end
 
 
