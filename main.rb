@@ -8,10 +8,10 @@ require './MrRoboto.rb'
 
 # Args are 0 = server, 1 = port, 2 = nick, 3 = starting channel
 
-puts ARGV.length
 
-myBot = MrRoboto.new("#{ARGV[0]}", ARGV[1], "#{ARGV[2]}, #{ARGV[3]}")
+myBot = MrRoboto.new(ARGV[0], ARGV[1], ARGV[2], ARGV[3])
 
 myBot.connect()
 
 myBot.run()
+

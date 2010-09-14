@@ -22,15 +22,15 @@ class MrRoboto
 	@stream.puts("JOIN #{@startchan}")
 
 	# Rescue if we can't connect to the irc server
-#	rescue SystemCallError => e
-#		puts "\nError: Cannot connect to server!"
-#		puts
-#		exit
+	rescue SystemCallError => e
+		puts "\nError: Cannot connect to server!"
+		puts
+		exit
   end
 
-  def joinChannel(s, channel)
+  def joinChannel(channel)
 
-	s.puts("JOIN #{channel}")
+	@stream.puts("JOIN #{channel}")
  
   end
 
