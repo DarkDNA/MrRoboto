@@ -1,10 +1,16 @@
 require './MrRoboto.rb'
 
-#myBot = MrRoboto.new("wenduri.darkdna.net", 6667, "MrRoboto", "#bots")
-#myBot = MrRoboto.new("chat.freenode.net", 6667, "MrRoboooto", "#botters")
-#myBot = MrRoboto.new("localhost", 6667, "MrRoboto", "#bots")
+# Need to check to make sure we have the correct # of arguments
 
-myBot = MrRoboto.new("localhost", 12345, "MrRoboto", "#bots")
+
+# Test  to see if the 2nd argument is a valid number for the port
+
+
+# Args are 0 = server, 1 = port, 2 = nick, 3 = starting channel
+
+puts ARGV.length
+
+myBot = MrRoboto.new("#{ARGV[0]}", ARGV[1], "#{ARGV[2]}, #{ARGV[3]}")
 
 myBot.connect()
 
