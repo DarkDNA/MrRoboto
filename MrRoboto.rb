@@ -17,6 +17,13 @@ class MrRoboto
   def connect()
 	
 	@stream = TCPSocket.open(@server, @port)
+
+	# Rescue if we can't connect to the irc server
+	rescue SystemCallError => e
+		puts "\nError: Cannot connect to server!"
+		puts
+		exit
+
 	@stream.puts("NICK #{@nick}")
 	@stream.puts("USER #{@nick} 8 * :#{@nick}")
 	@stream.puts("JOIN #{@startchan}")
