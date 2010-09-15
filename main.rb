@@ -9,6 +9,11 @@ require './MrRoboto.rb'
 # Args are 0 = server, 1 = port, 2 = nick, 3 = starting channel
 
 
+# Do to the shell interpreting #channel as a comment, the work around is to enter the channel name
+# without the # in it. We append # to it inside the main application file to acutally join the channel
+
+ARGV[3] = "##{ARGV[3]}"
+
 myBot = MrRoboto.new(ARGV[0], ARGV[1], ARGV[2], ARGV[3])
 
 myBot.connect()

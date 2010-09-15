@@ -13,6 +13,8 @@
 	- error/tell user if args aren't right
 	- will send PRIVMSG to nick
 
+- Add protected methods join and part with the same ACL as quit.. they simply join or part channels
+
 
 ---- less important ----
 
