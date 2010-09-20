@@ -7,19 +7,20 @@
 
 - need to handle if nick is already taken message/numeric (sent by ircd)
 
-- Fix a main.rb file so that when you run it with params, it creates / runs the bot
+- Need to do a port # check to see if it's valid.. input from ARGV is always a String 
+
+- Add protected methods join and part with the same ACL as quit.. they simply join or part channels
+
+- Fix formatting of console output to be more like an irc client (only output timestamp, nick, message
+
+
+---- less important ----
 
 - Add tell command similar to say, but takes 2 args (required) -- nick and message
 	- error/tell user if args aren't right
 	- will send PRIVMSG to nick
 
-- Add protected methods join and part with the same ACL as quit.. they simply join or part channels
-
-
----- less important ----
-
 - Fix things to maybe use an array or return an array of parsed messages instead of having a that many instance variables.
-
 
 - expand !time command to take timezones
 

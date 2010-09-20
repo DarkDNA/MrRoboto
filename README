@@ -8,6 +8,9 @@ How to use
 ==========
 
 1. Get the source from github
-2. Run "ruby main.rb" to start the bot. 
+2. Run main.rb with 4 parameters: Server, port, Nick, Channel
+    NOTE: when entering the channel name, do NOT use # otherwise the shell will see it as a comment.
+       
+        - ex. ruby main.rb localhost 6667 mybot lobby
 
-    - I plan to make the main.rb take parameters to connect to a server / chan and handle errors ..etc
+3. Enjoy!
