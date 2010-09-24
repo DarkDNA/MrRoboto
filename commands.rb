@@ -118,4 +118,15 @@ class BotCommands
 
 	end
 
+    def join(*channel)
+
+        @stream.puts("JOIN #{channel[0]}")
+
+    end
+
+    def part(*channel)
+
+        @stream.puts("PART #{channel[0]}")
+    end
+
 end

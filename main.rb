@@ -9,12 +9,6 @@ if ARGV.length != 4
 
 end
 
-# Test  to see if the 2nd argument is a valid number for the port
-
-
-
-# Args are 0 = server, 1 = port, 2 = nick, 3 = starting channel
-
 
 # Do to the shell interpreting #channel as a comment, the work around is to enter the channel name
 # without the # in it. We append # to it inside the main application file to acutally join the channel

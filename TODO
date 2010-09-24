@@ -5,11 +5,13 @@
 
 *** IMPORTANT ****
 
+- Need to protect join and part methods
+
+    - bug with them that i think has to do with command not found parsing.. weird display when parting
+
 - need to handle if nick is already taken message/numeric (sent by ircd)
 
 - Need to do a port # check to see if it's valid.. input from ARGV is always a String 
-
-- Add protected methods join and part with the same ACL as quit.. they simply join or part channels
 
 - Fix formatting of console output to be more like an irc client (only output timestamp, nick, message
 
